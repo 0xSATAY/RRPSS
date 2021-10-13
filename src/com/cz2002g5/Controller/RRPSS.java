@@ -72,7 +72,7 @@ public class RRPSS {
                     this.view = new WelcomeView();
                     getCurrentView(this).show();
                     break;
-                case 2:
+                case 2: //TODO
                     break;
                 case 3:
                     OrderController oc = new OrderController();
@@ -86,9 +86,27 @@ public class RRPSS {
                     this.view = new WelcomeView();
                     getCurrentView(this).show();
                     break;
-                case 5:
-                    this.view = new MenuItemsView();
-                    getCurrentView(this).show(this.generateMenuString());
+                case 5: //TODO
+                    this.view = new WelcomeView();
+                    getCurrentView(this).show();
+                    break;
+                case 6: //TODO
+                    this.view = new WelcomeView();
+                    getCurrentView(this).show();
+                    break;
+                case 7: //TODO
+                    this.view = new WelcomeView();
+                    getCurrentView(this).show();
+                    break;
+                case 8: //TODO
+                    this.view = new WelcomeView();
+                    getCurrentView(this).show();
+                    break;
+                case 9: //TODO
+                    this.view = new WelcomeView();
+                    getCurrentView(this).show();
+                    break;
+                case 10: //TODO
                     this.view = new WelcomeView();
                     getCurrentView(this).show();
                     break;
