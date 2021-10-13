@@ -50,5 +50,6 @@ $ cd RRPSS
 - [ ] Refactor and modularize codebase further
 - [ ] Generate Javadocs
 - [ ] Create UML Class Diagrams using [PlantUML](https://plantuml.com/)
+- [ ] Create a command-line launcher
 
 I might have over-engineered this thing :/
