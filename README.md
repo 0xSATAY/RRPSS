@@ -10,11 +10,11 @@ CZ2002 Group Project AY2021-2022 SEM 1
 
 ## About the Project
 
-<b>The main objective of this assignment is</b>
-• to apply the Object-Oriented (OO) concepts we have learnt in the course,
-• to model, design and develop an OO application.
-• to gain familiarity with using Java as an object-oriented programming language.
-• to work collaboratively as a group to achieve a common goal.
+<b>The main objective of this assignment is</b>\n
+• to apply the Object-Oriented (OO) concepts we have learnt in the course,\n
+• to model, design and develop an OO application.\n
+• to gain familiarity with using Java as an object-oriented programming language.\n
+• to work collaboratively as a group to achieve a common goal.\n
 
 ## Getting Started
 
