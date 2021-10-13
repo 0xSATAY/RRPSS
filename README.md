@@ -6,7 +6,7 @@ CZ2002 Group Project AY2021-2022 SEM 1
 1. [About the Project](#about-the-project)
 2. [Getting Started](#getting-started)
 3. [Dependencies](#dependencies)
-4 .[TODO](#todo)
+4. [TODO](#todo)
 
 ## About the Project
 
@@ -31,7 +31,7 @@ $ cd RRPSS
 
 * TBD
 
-## todo
+## TODO
 - [x] Implement base model classes
 - [x] Add basic menu as text file
 - [x] Read menu from text file
