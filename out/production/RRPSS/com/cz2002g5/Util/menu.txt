@@ -1,0 +1,5 @@
+Chicken;MAINS;Tasty chicken;1
+Duck;MAINS;Tasty duck;99.0
+Coke;DRINKS;Coca Cola;1
+Fish;MAINS;Promotional items;4
+Ice Cream;DESSERT;wow!;2.99
