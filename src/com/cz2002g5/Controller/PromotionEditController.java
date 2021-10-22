@@ -1,13 +1,11 @@
 package com.cz2002g5.Controller;
 
-
-import com.cz2002g5.View.ItemEditorView;
 import com.cz2002g5.View.PromotionEditorView;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class PromotionEditor implements MenuEditor {
+public class PromotionEditController implements MenuEditController {
 
     @Override
     public void selectAction(RRPSS pos) throws IOException {

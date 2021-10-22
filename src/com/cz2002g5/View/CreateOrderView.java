@@ -16,15 +16,15 @@ public class CreateOrderView implements View {
         this.show(menuString);
     }
 
-    public void employeeIDView() {
+    public void showEmployeeIDView() {
         System.out.println("Enter your employee ID:");
     }
 
-    public void tableNumberView() {
+    public void showTableNumberView() {
         System.out.println("Enter the table number:");
     }
 
-    public void numOfCustomersView() {
+    public void showNumOfCustomersView() {
         System.out.println("Enter the number of customers:");
     }
 }

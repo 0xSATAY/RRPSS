@@ -6,7 +6,6 @@ import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Order.Order;
 import com.cz2002g5.Model.Restaurant.Restaurant;
 import com.cz2002g5.Util.CSVFileUtil;
-import com.cz2002g5.View.MenuItemsView;
 import com.cz2002g5.View.View;
 import com.cz2002g5.View.WelcomeView;
 
@@ -21,7 +20,7 @@ public class RRPSS {
     private final Menu menu;
     private View view;
     private final ArrayList<Order> orders = new ArrayList<>();
-    private PromotionEditor pe;
+    private PromotionEditController pe;
 
     public RRPSS() throws IOException {
         this.restaurant = new Restaurant();
@@ -67,8 +66,8 @@ public class RRPSS {
             int input = sc.nextInt();
             switch (input) {
                 case 1:
-                    ItemEditor ie = new ItemEditor();
-                    ie.selectAction(this);
+                    MenuItemController mic = new MenuItemController();
+                    mic.selectAction(this);
                     this.view = new WelcomeView();
                     getCurrentView(this).show();
                     break;

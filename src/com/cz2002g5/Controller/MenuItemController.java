@@ -12,7 +12,7 @@ import com.cz2002g5.View.UpdateItemView;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ItemEditor implements MenuEditor{
+public class MenuItemController implements MenuEditController {
 
     @Override
     public void selectAction(RRPSS pos) throws IOException {
@@ -49,7 +49,7 @@ public class ItemEditor implements MenuEditor{
             Scanner sc = new Scanner(System.in);
             RRPSS.updateView(pos, new DeleteItemView());
             RRPSS.showView(pos);
-            ((DeleteItemView) RRPSS.getCurrentView(pos)).deleteItemView(pos.generateMenuString());
+            ((DeleteItemView) RRPSS.getCurrentView(pos)).showDeleteItemView(pos.generateMenuString());
             while (!sc.hasNextInt()) {
                 System.out.println("You have inputted a non-numerical value!");
                 System.out.println("Select the item you wish to delete:");
@@ -73,14 +73,14 @@ public class ItemEditor implements MenuEditor{
         Scanner sc = new Scanner(System.in);
         RRPSS.updateView(pos,new CreateItemView());
         RRPSS.showView(pos);
-        ((CreateItemView) RRPSS.getCurrentView(pos)).addNameView();
+        ((CreateItemView) RRPSS.getCurrentView(pos)).showAddNameView();
         String name = sc.nextLine();
         ItemType type;
         while (true) {
-            ((CreateItemView) RRPSS.getCurrentView(pos)).addTypeView();
+            ((CreateItemView) RRPSS.getCurrentView(pos)).showAddTypeView();
             while (!sc.hasNextInt()) {
                 System.out.println("You have inputted a non-numerical value!");
-                ((CreateItemView) RRPSS.getCurrentView(pos)).addTypeView();
+                ((CreateItemView) RRPSS.getCurrentView(pos)).showAddTypeView();
                 sc.next();
             }
             int typeSelection = sc.nextInt();
@@ -91,14 +91,14 @@ public class ItemEditor implements MenuEditor{
                 System.out.println("You have entered an invalid type!");
             }
         }
-        ((CreateItemView) RRPSS.getCurrentView(pos)).addPriceView();
+        ((CreateItemView) RRPSS.getCurrentView(pos)).showAddPriceView();
         while (!sc.hasNextDouble()) {
             System.out.println("You have inputted a non-numerical value!");
-            ((CreateItemView) RRPSS.getCurrentView(pos)).addPriceView();
+            ((CreateItemView) RRPSS.getCurrentView(pos)).showAddPriceView();
             sc.next();
         }
         Double price = sc.nextDouble();
-        ((CreateItemView) RRPSS.getCurrentView(pos)).addDescView();
+        ((CreateItemView) RRPSS.getCurrentView(pos)).showAddDescView();
         sc.nextLine();
         String desc = sc.nextLine();
         MenuItem newItem = new MenuItem(name, type, desc, price);
@@ -121,7 +121,7 @@ public class ItemEditor implements MenuEditor{
             Menu menu = RRPSS.getMenu(pos);
             if (selection >= 0 && selection < menu.getMenuItems().size()) {
                 MenuItem itemSelected = menu.getMenuItems().get(selection);
-                ((UpdateItemView) RRPSS.getCurrentView(pos)).updateNameView(itemSelected.getName());
+                ((UpdateItemView) RRPSS.getCurrentView(pos)).showUpdateNameView(itemSelected.getName());
                 sc = new Scanner(System.in);
                 String name = sc.nextLine();
                 if (name.isEmpty()) {
@@ -129,10 +129,10 @@ public class ItemEditor implements MenuEditor{
                 }
                 ItemType type;
                 while (true) {
-                    ((UpdateItemView) RRPSS.getCurrentView(pos)).updateTypeView(name);
+                    ((UpdateItemView) RRPSS.getCurrentView(pos)).showUpdateTypeView(name);
                     while (!sc.hasNextInt()) {
                         System.out.println("You have inputted a non-numerical value!");
-                        ((CreateItemView) RRPSS.getCurrentView(pos)).addTypeView();
+                        ((CreateItemView) RRPSS.getCurrentView(pos)).showAddTypeView();
                         sc.next();
                     }
                     int typeSelection = sc.nextInt();
@@ -147,17 +147,17 @@ public class ItemEditor implements MenuEditor{
                         System.out.println("You have entered an invalid type!");
                     }
                 }
-                ((UpdateItemView) RRPSS.getCurrentView(pos)).updatePriceView(name);
+                ((UpdateItemView) RRPSS.getCurrentView(pos)).showUpdatePriceView(name);
                 while (!sc.hasNextDouble()) {
                     System.out.println("You have inputted a non-numerical value!");
-                    ((CreateItemView) RRPSS.getCurrentView(pos)).addPriceView();
+                    ((CreateItemView) RRPSS.getCurrentView(pos)).showAddPriceView();
                     sc.next();
                 }
                 Double price = sc.nextDouble();
                 if (price == 0.0) {
                     price = itemSelected.getPrice();
                 }
-                ((UpdateItemView) RRPSS.getCurrentView(pos)).updateDescView(name);
+                ((UpdateItemView) RRPSS.getCurrentView(pos)).showUpdateDescView(name);
                 sc.nextLine();
                 String desc = sc.nextLine();
                 if (desc.isEmpty()) {

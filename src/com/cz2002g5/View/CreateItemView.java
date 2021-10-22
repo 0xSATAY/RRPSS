@@ -12,19 +12,19 @@ public class CreateItemView implements View {
 
     }
 
-    public void addNameView() {
+    public void showAddNameView() {
         System.out.println("Name of item:");
     }
 
-    public void addTypeView() {
+    public void showAddTypeView() {
         System.out.println("Type of item:\n1. MAINS\n2. DRINKS\n3. DESSERT");
     }
 
-    public void addDescView() {
+    public void showAddDescView() {
         System.out.println("Description of item:");
     }
 
-    public void addPriceView() {
+    public void showAddPriceView() {
         System.out.println("Price of item:");
     }
 }

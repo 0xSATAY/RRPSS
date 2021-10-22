@@ -4,7 +4,7 @@ title __RRPSS's Class Diagram__\n
 
     namespace com.cz2002g5 {
       namespace Controller {
-        class com.cz2002g5.Controller.ItemEditor {
+        class com.cz2002g5.Controller.MenuItemController {
             + createItem()
             + removeItem()
             + selectAction()
@@ -16,7 +16,7 @@ title __RRPSS's Class Diagram__\n
 
     namespace com.cz2002g5 {
       namespace Controller {
-        interface com.cz2002g5.Controller.MenuEditor {
+        interface com.cz2002g5.Controller.MenuEditController {
             {abstract} + createItem()
             {abstract} + removeItem()
             {abstract} + selectAction()
@@ -38,7 +38,7 @@ title __RRPSS's Class Diagram__\n
 
     namespace com.cz2002g5 {
       namespace Controller {
-        class com.cz2002g5.Controller.PromotionEditor {
+        class com.cz2002g5.Controller.PromotionEditController {
             + createItem()
             + removeItem()
             + selectAction()
@@ -378,10 +378,10 @@ title __RRPSS's Class Diagram__\n
   }
 
 
-  com.cz2002g5.Controller.ItemEditor .up.|> com.cz2002g5.Controller.MenuEditor
-  com.cz2002g5.Controller.PromotionEditor .up.|> com.cz2002g5.Controller.MenuEditor
+  com.cz2002g5.Controller.MenuItemController .up.|> com.cz2002g5.Controller.MenuEditController
+  com.cz2002g5.Controller.PromotionEditController .up.|> com.cz2002g5.Controller.MenuEditController
   com.cz2002g5.Controller.RRPSS o-- com.cz2002g5.Model.Menu.Menu : menu
-  com.cz2002g5.Controller.RRPSS o-- com.cz2002g5.Controller.PromotionEditor : pe
+  com.cz2002g5.Controller.RRPSS o-- com.cz2002g5.Controller.PromotionEditController : pe
   com.cz2002g5.Controller.RRPSS o-- com.cz2002g5.Model.Restaurant.Restaurant : restaurant
   com.cz2002g5.Controller.RRPSS o-- com.cz2002g5.View.View : view
   com.cz2002g5.Model.Customer.Customer o-- com.cz2002g5.Model.Misc.Gender : gender

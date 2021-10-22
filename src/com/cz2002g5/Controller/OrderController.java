@@ -5,6 +5,7 @@ import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Order.Order;
 import com.cz2002g5.Model.Restaurant.Restaurant;
 import com.cz2002g5.View.CreateOrderView;
+import com.cz2002g5.View.RemoveOrderItemView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -35,14 +36,14 @@ public class OrderController {
         CreateOrderView cov = new CreateOrderView();
         RRPSS.updateView(pos,cov);
         int employeeID;
-        cov.employeeIDView();
+        cov.showEmployeeIDView();
         while (!sc.hasNextInt()) {
             System.out.println("You have inputted an invalid ID!\nEnter your employee ID:");
             sc.next();
         }
         employeeID = sc.nextInt();
         int tableNumber;
-        cov.tableNumberView();
+        cov.showTableNumberView();
         while (!sc.hasNextInt()) {
             System.out.println("You have inputted an invalid table number!\nEnter the table number:");
             sc.next();
@@ -57,7 +58,7 @@ public class OrderController {
             return;
         }
         int numOfCustomers;
-        cov.numOfCustomersView();
+        cov.showNumOfCustomersView();
         while (!sc.hasNextInt()) {
             System.out.println("You have inputted an invalid number of customers!\nEnter the the number of customers:");
             sc.next();
@@ -106,5 +107,35 @@ public class OrderController {
                 input = sc.nextInt()-1;
             }
         }
+    }
+
+    public void removeOrder(RRPSS pos) {
+        Scanner sc = new Scanner(System.in);
+        RemoveOrderItemView roiv = new RemoveOrderItemView();
+        RRPSS.updateView(pos, roiv);
+        RRPSS.showView(pos);
+        this.viewAllOrders(pos);
+        if (pos.getOrders().size() == 0) {
+            return;
+        }
+        System.out.println("Select the order you wish to remove items from:");
+        while (!sc.hasNextInt()) {
+            System.out.println("You have entered an invalid option!\nSelect the order you wish to remove items from:");
+            sc.next();
+        }
+        int orderSelection = sc.nextInt();
+        if (orderSelection < 1 || orderSelection > pos.getOrders().size()) {
+            System.out.println("You have entered an invalid order!");
+            return;
+        }
+
+    }
+
+    public void updateOrder(RRPSS pos) {
+
+    }
+
+    public void generateInvoice(RRPSS pos) {
+
     }
 }

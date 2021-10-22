@@ -11,7 +11,7 @@ public class DeleteItemView implements View {
 
     }
 
-    public void deleteItemView(String menu) {
+    public void showDeleteItemView(String menu) {
         System.out.println(menu);
         System.out.println("Select the item you wish to delete:");
     }
