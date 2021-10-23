@@ -2,16 +2,44 @@ package com.cz2002g5.Controller;
 
 import com.cz2002g5.Model.Menu.Menu;
 import com.cz2002g5.Model.Menu.MenuItem;
+import com.cz2002g5.Model.Menu.PromotionalSet;
 import com.cz2002g5.Model.Order.Order;
 import com.cz2002g5.Model.Restaurant.Restaurant;
+import com.cz2002g5.Util.CSVFileUtil;
 import com.cz2002g5.View.CreateOrderView;
+import com.cz2002g5.View.OrderEditorView;
 import com.cz2002g5.View.RemoveOrderItemView;
+import com.cz2002g5.View.UpdateOrderItemView;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OrderController {
+
+    public void selectAction(RRPSS pos) throws IOException {
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+            RRPSS.updateView(pos, new OrderEditorView());
+            RRPSS.showView(pos);
+            while (!sc.hasNextInt()) {
+                System.out.println("You have inputted a non-numerical value!\nSelect your action:");
+                sc.next();
+            }
+            int action = sc.nextInt();
+            switch (action) {
+                case 1:
+                    this.addItemToOrder(pos);
+                    return;
+                case 2:
+                    this.removeItemFromOrder(pos);
+                    return;
+                default:
+                    System.out.println("You have selected an invalid action!");
+            }
+        }
+    }
 
     public void viewAllOrders(RRPSS pos) {
         ArrayList<Order> orders = pos.getOrders();
@@ -26,6 +54,9 @@ public class OrderController {
             System.out.println("Number of customers: " + order.getNumOfCustomers());
             for (MenuItem item : order.getOrderItems()) {
                 System.out.println(item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
+            }
+            for (PromotionalSet ps : order.getPromotionalSets()) {
+                System.out.println(ps.getName() + " - " + NumberFormat.getCurrencyInstance().format(ps.getPrice()));
             }
             System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(order.getTotalPrice()) + "\n");
         }
@@ -71,17 +102,71 @@ public class OrderController {
         int input;
         RRPSS.showView(pos);
         ((CreateOrderView) RRPSS.getCurrentView(pos)).showMenu(pos.generateMenuString());
+        System.out.println("If no item is selected, enter 0:");
         while (!sc.hasNextInt()) {
             System.out.println("You have inputted a non-numerical value!\nSelect an item from the menu:");
             sc.next();
         }
         input = sc.nextInt()-1;
+        boolean done = false;
+        if (input == -1) done = true;
         Menu menu = RRPSS.getMenu(pos);
         Order order = new Order(employeeID,tableNumber,numOfCustomers);
-        while (true) {
+        while (!done) {
             if (input>=0 && input<menu.getMenuItems().size()) {
                 order.addItem(menu.getMenuItems().get(input));
                 System.out.println(menu.getMenuItems().get(input).getName() +
+                        " has been added. To enter another item, enter its corresponding number. If you are done, enter '.'");
+                if (sc.hasNextInt()) {
+                    input = sc.nextInt()-1;
+                } else {
+                    break;
+                }
+            } else {
+                System.out.println("You have entered an invalid option!\nSelect an item from the menu:");
+                while (!sc.hasNextInt()) {
+                    System.out.println("You have inputted a non-numerical value!\nSelect an item from the menu:");
+                    sc.next();
+                }
+                input = sc.nextInt()-1;
+            }
+        }
+        System.out.println("---------------Promo sets---------------");
+        ((CreateOrderView) RRPSS.getCurrentView(pos)).showMenu(pos.generatePromoMenuString());
+        System.out.println("If no item is selected, enter 0:");
+        while (!sc.hasNextInt()) {
+            System.out.println("You have inputted a non-numerical value!\nSelect an item from the menu:");
+            sc.next();
+        }
+        input = sc.nextInt()-1;
+        ArrayList<PromotionalSet> promotionalSets = RRPSS.getPromotionalSets(pos);
+        done = false;
+        if (input == -1) {
+            done = true;
+        }
+        if (done) {
+            System.out.println("Items in your order:");
+            for (int i=0;i<order.getOrderItems().size();i++) {
+                MenuItem item = order.getOrderItems().get(i);
+                System.out.println(i + 1 + ". " + item.getName() + " - " +
+                        NumberFormat.getCurrencyInstance().format(item.getPrice()));
+            }
+            for (int i=0;i<order.getPromotionalSets().size();i++) {
+                PromotionalSet promotionalSet = order.getPromotionalSets().get(i);
+                System.out.println(i + 1 + ". " + promotionalSet.getName() + " - " +
+                        NumberFormat.getCurrencyInstance().format(promotionalSet.getPrice()));
+            }
+            if (order.getAllItemOrders().size() == 0) return;
+            pos.addOrder(order);
+            pos.getRestaurant().getTables().get(tableNumber-1).setOccupied(true);
+            System.out.println("Total price of items: " +
+                    NumberFormat.getCurrencyInstance().format(order.getTotalPrice()) + "\n");
+            return;
+        }
+        while (true) {
+            if (input>=0 && input<promotionalSets.size()) {
+                order.addPromotionalSets(promotionalSets.get(input));
+                System.out.println(promotionalSets.get(input).getName() +
                         " has been added. To enter another item, enter its corresponding number. If you are done, enter '.'");
                 if (sc.hasNextInt()) {
                     input = sc.nextInt()-1;
@@ -91,6 +176,11 @@ public class OrderController {
                         MenuItem item = order.getOrderItems().get(i);
                         System.out.println(i + 1 + ". " + item.getName() + " - " +
                                 NumberFormat.getCurrencyInstance().format(item.getPrice()));
+                    }
+                    for (int i=0;i<order.getPromotionalSets().size();i++) {
+                        PromotionalSet promotionalSet = order.getPromotionalSets().get(i);
+                        System.out.println(i + 1 + ". " + promotionalSet.getName() + " - " +
+                                NumberFormat.getCurrencyInstance().format(promotionalSet.getPrice()));
                     }
                     pos.addOrder(order);
                     pos.getRestaurant().getTables().get(tableNumber-1).setOccupied(true);
@@ -109,30 +199,162 @@ public class OrderController {
         }
     }
 
-    public void removeOrder(RRPSS pos) {
+    public void addItemToOrder(RRPSS pos) throws IOException {
         Scanner sc = new Scanner(System.in);
-        RemoveOrderItemView roiv = new RemoveOrderItemView();
-        RRPSS.updateView(pos, roiv);
+        UpdateOrderItemView uoiv = new UpdateOrderItemView();
+        RRPSS.updateView(pos, uoiv);
         RRPSS.showView(pos);
-        this.viewAllOrders(pos);
+        int counter = 1;
+        for (Order order : pos.getOrders()) {
+            System.out.println("ORDER #" + counter + "-------------");
+            System.out.println("Employee ID: " + order.getEmployeeID());
+            System.out.println("Table Number: " + order.getTableNumber());
+            System.out.println("Number of customers: " + order.getNumOfCustomers());
+            for (MenuItem item : order.getOrderItems()) {
+                System.out.println(item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
+                counter++;
+            }
+            System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(order.getTotalPrice()) + "\n");
+            counter = 1;
+        }
         if (pos.getOrders().size() == 0) {
             return;
         }
-        System.out.println("Select the order you wish to remove items from:");
+        System.out.println("Select the order you wish to add item to:");
         while (!sc.hasNextInt()) {
-            System.out.println("You have entered an invalid option!\nSelect the order you wish to remove items from:");
+            System.out.println("You have entered an invalid option!\nSelect the order you wish to add item to:");
             sc.next();
         }
-        int orderSelection = sc.nextInt();
+        Integer orderSelection = sc.nextInt();
+        if (orderSelection == 0) {
+            return;
+        }
         if (orderSelection < 1 || orderSelection > pos.getOrders().size()) {
             System.out.println("You have entered an invalid order!");
             return;
         }
-
+        orderSelection--;
+        Order orderSelected = pos.getOrders().get(orderSelection);
+        System.out.println("Add item to order #" + (orderSelection+1));
+        counter = 1;
+        ArrayList<MenuItem> menuItems = RRPSS.getMenu(pos).getMenuItems();
+        ArrayList<PromotionalSet> promotionalSets = RRPSS.getPromotionalSets(pos);
+        for (MenuItem item : menuItems) {
+            System.out.println(counter + ": " + item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
+            counter++;
+        }
+        for (PromotionalSet ps : promotionalSets) {
+            System.out.println(counter + ": " + ps.getName() + " - " + NumberFormat.getCurrencyInstance().format(ps.getPrice()));
+            counter++;
+        }
+        counter = 1;
+        System.out.println("Select the item you wish to add:");
+        while (!sc.hasNextInt()) {
+            System.out.println("You have entered an invalid option!\nSelect the item you wish to add:");
+            sc.next();
+        }
+        Integer itemSelection = sc.nextInt();
+        if (itemSelection < 1 || itemSelection > menuItems.size()+promotionalSets.size()) {
+            System.out.println("You have entered an invalid item!");
+            return;
+        }
+        itemSelection--;
+        if (itemSelection >= menuItems.size()) {
+            PromotionalSet psSelected = promotionalSets.get(itemSelection-menuItems.size());
+            orderSelected.addPromotionalSets(psSelected);
+            System.out.println("You have added " + psSelected.getName());
+        } else {
+            MenuItem menuItem = menuItems.get(itemSelection);
+            orderSelected.addItem(menuItem);
+            System.out.println("You have added " + menuItem.getName());
+        }
+        System.out.println("ORDER #" + (orderSelection+1) + "-------------");
+        for (MenuItem item : orderSelected.getAllItemOrders()) {
+            System.out.println(item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
+        }
+        System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(orderSelected.getTotalPrice()) + "\n");
+        return;
     }
 
-    public void updateOrder(RRPSS pos) {
-
+    public void removeItemFromOrder(RRPSS pos) {
+        Scanner sc = new Scanner(System.in);
+        RemoveOrderItemView roiv = new RemoveOrderItemView();
+        RRPSS.updateView(pos, roiv);
+        RRPSS.showView(pos);
+        int counter = 1;
+        for (Order order : pos.getOrders()) {
+            System.out.println("ORDER #" + counter + "-------------");
+            System.out.println("Employee ID: " + order.getEmployeeID());
+            System.out.println("Table Number: " + order.getTableNumber());
+            System.out.println("Number of customers: " + order.getNumOfCustomers());
+            for (MenuItem item : order.getOrderItems()) {
+                System.out.println(item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
+                counter++;
+            }
+            for (PromotionalSet ps : order.getPromotionalSets()) {
+                System.out.println(ps.getName() + " - " + NumberFormat.getCurrencyInstance().format(ps.getPrice()));
+                counter++;
+            }
+            System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(order.getTotalPrice()) + "\n");
+            counter = 1;
+        }
+        if (pos.getOrders().size() == 0) {
+            return;
+        }
+        System.out.println("Select the order you wish to remove item from:");
+        while (!sc.hasNextInt()) {
+            System.out.println("You have entered an invalid option!\nSelect the order you wish to remove item from:");
+            sc.next();
+        }
+        Integer orderSelection = sc.nextInt();
+        if (orderSelection == 0) {
+            return;
+        }
+        if (orderSelection < 1 || orderSelection > pos.getOrders().size()) {
+            System.out.println("You have entered an invalid order!");
+            return;
+        }
+        orderSelection--;
+        Order orderSelected = pos.getOrders().get(orderSelection);
+        System.out.println("Remove item from order #" + (orderSelection+1));
+        counter = 1;
+        for (MenuItem item : orderSelected.getOrderItems()) {
+            System.out.println(counter + ": " + item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
+            counter++;
+        }
+        for (PromotionalSet ps : orderSelected.getPromotionalSets()) {
+            System.out.println(counter + ": " + ps.getName() + " - " + NumberFormat.getCurrencyInstance().format(ps.getPrice()));
+            counter++;
+        }
+        System.out.println("Select the item you wish to remove:");
+        while (!sc.hasNextInt()) {
+            System.out.println("You have entered an invalid option!\nSelect the item you wish to remove:");
+            sc.next();
+        }
+        Integer itemSelection = sc.nextInt();
+        if (itemSelection < 1 || itemSelection > orderSelected.getTotalOrderSize()) {
+            System.out.println("You have entered an invalid item!");
+            return;
+        }
+        itemSelection--;
+        MenuItem menuItem = orderSelected.getAllItemOrders().get(itemSelection);
+        if (menuItem instanceof PromotionalSet) {
+            orderSelected.removePromotionalSet((PromotionalSet) menuItem);
+        } else {
+            orderSelected.removeItem(menuItem);
+        }
+        System.out.println("You have removed " + menuItem.getName());
+        if (orderSelected.getAllItemOrders().size() == 0) {
+            pos.getOrders().remove(orderSelected);
+            pos.getRestaurant().getTables().get(orderSelected.getTableNumber()-1).setOccupied(false);
+            return;
+        }
+        System.out.println("ORDER #" + (orderSelection+1) + "-------------");
+        for (MenuItem item : orderSelected.getAllItemOrders()) {
+            System.out.println(item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
+        }
+        System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(orderSelected.getTotalPrice()) + "\n");
+        return;
     }
 
     public void generateInvoice(RRPSS pos) {

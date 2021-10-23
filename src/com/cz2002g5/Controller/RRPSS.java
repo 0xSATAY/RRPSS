@@ -3,6 +3,7 @@ package com.cz2002g5.Controller;
 import com.cz2002g5.Model.Customer.Customer;
 import com.cz2002g5.Model.Menu.Menu;
 import com.cz2002g5.Model.Menu.MenuItem;
+import com.cz2002g5.Model.Menu.PromotionalSet;
 import com.cz2002g5.Model.Order.Order;
 import com.cz2002g5.Model.Restaurant.Restaurant;
 import com.cz2002g5.Util.CSVFileUtil;
@@ -17,14 +18,17 @@ import java.util.Scanner;
 public class RRPSS {
     private final Restaurant restaurant;
     private final ArrayList<Customer> customerList = new ArrayList<>();
-    private final Menu menu;
-    private View view;
     private final ArrayList<Order> orders = new ArrayList<>();
+    private final Menu menu;
+    private ArrayList<PromotionalSet> promotionalSets;
+    private View view;
+
     private PromotionEditController pe;
 
     public RRPSS() throws IOException {
         this.restaurant = new Restaurant();
         this.menu = new Menu(CSVFileUtil.generateMenuItemListFromFile());
+        this.promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
     }
 
     public static void updateView(RRPSS pos, View view) {
@@ -45,6 +49,10 @@ public class RRPSS {
 
     public static Menu getMenu(RRPSS pos) {
         return pos.menu;
+    }
+
+    public static ArrayList<PromotionalSet> getPromotionalSets(RRPSS pos) {
+        return pos.promotionalSets;
     }
 
     public void run() throws IOException {
@@ -71,7 +79,11 @@ public class RRPSS {
                     this.view = new WelcomeView();
                     getCurrentView(this).show();
                     break;
-                case 2: //TODO
+                case 2:
+                    PromotionEditController pec = new PromotionEditController();
+                    pec.selectAction(this);
+                    this.view = new WelcomeView();
+                    getCurrentView(this).show();
                     break;
                 case 3:
                     OrderController oc = new OrderController();
@@ -85,7 +97,9 @@ public class RRPSS {
                     this.view = new WelcomeView();
                     getCurrentView(this).show();
                     break;
-                case 5: //TODO
+                case 5:
+                    oc = new OrderController();
+                    oc.selectAction(this);
                     this.view = new WelcomeView();
                     getCurrentView(this).show();
                     break;
@@ -117,6 +131,7 @@ public class RRPSS {
 
     public void reloadMenu() throws IOException {
         this.menu.setMenuItems(CSVFileUtil.generateMenuItemListFromFile());
+        this.promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
     }
 
     public void addOrder(Order order) {
@@ -131,6 +146,25 @@ public class RRPSS {
         return this.restaurant;
     }
 
+    public void addPromoSet(PromotionalSet pi) {
+        this.promotionalSets.add(pi);
+    }
+
+    public String generatePromoMenuString() {
+        ArrayList<PromotionalSet> promotionalSets = new ArrayList<>();
+        StringBuilder promoString = new StringBuilder();
+        try {
+            promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int i=0;i<promotionalSets.size();i++) {
+            promoString.append(new StringBuilder().append(i + 1).append(". ").append(promotionalSets.get(i).getName())
+                    .append(" - ").append(NumberFormat.getCurrencyInstance().format(promotionalSets.get(i).getPrice()))
+                    .append("\n"));
+        }
+        return promoString.toString();
+    }
 
     public String generateMenuString() {
         ArrayList<MenuItem> menu = new ArrayList<>();
@@ -143,7 +177,7 @@ public class RRPSS {
         for (int i=0;i<menu.size();i++) {
             menuString.append(new StringBuilder().append(i + 1).append(". ").append(menu.get(i).getName())
                     .append(" - ").append(NumberFormat.getCurrencyInstance().format(menu.get(i).getPrice()))
-                    .append("\n").toString());
+                    .append("\n"));
         }
         return menuString.toString();
     }

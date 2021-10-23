@@ -1,4 +1,4 @@
-Chicken;MAINS;Tasty chicken;1
+Chicken;MAINS;Tasty chicken;20.0
 Duck;MAINS;Tasty duck;99.0
 Coke;DRINKS;Coca Cola;1
 Fish;MAINS;Promotional items;4

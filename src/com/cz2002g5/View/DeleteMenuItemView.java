@@ -1,6 +1,6 @@
 package com.cz2002g5.View;
 
-public class DeleteItemView implements View {
+public class DeleteMenuItemView implements View {
     @Override
     public void show() {
         System.out.println("---Deleting item---");
@@ -13,7 +13,7 @@ public class DeleteItemView implements View {
 
     public void showDeleteItemView(String menu) {
         System.out.println(menu);
-        System.out.println("Select the item you wish to delete:");
+        System.out.println("Select the item you wish to delete. To cancel enter 0:");
     }
 
 }

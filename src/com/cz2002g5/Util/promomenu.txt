@@ -1,0 +1,3 @@
+Best Promo;1.0;Chicken,Duck,Coke
+Good Promo;999.0;Chicken,Coke,Ice Cream
+Amazing Promo;1.0;Chicken,Duck,Coke,Fish,Ice Cream

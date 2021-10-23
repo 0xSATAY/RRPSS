@@ -1,6 +1,6 @@
 package com.cz2002g5.View;
 
-public class CreateItemView implements View {
+public class CreateMenuItemView implements View {
 
     @Override
     public void show() {

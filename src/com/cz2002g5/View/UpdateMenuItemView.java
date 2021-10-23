@@ -2,7 +2,7 @@ package com.cz2002g5.View;
 
 import com.cz2002g5.Model.Menu.ItemType;
 
-public class UpdateItemView implements View{
+public class UpdateMenuItemView implements View{
     public void showUpdateNameView(String name) {
         System.out.println("New name for " + name + " (or press Enter to keep prev name):");
     }
@@ -28,6 +28,6 @@ public class UpdateItemView implements View{
     public void show(String menu) {
         this.show();
         System.out.println(menu);
-        System.out.println("Enter the item you wish to edit:");
+        System.out.println("Enter the item you wish to edit. To cancel enter 0:");
     }
 }

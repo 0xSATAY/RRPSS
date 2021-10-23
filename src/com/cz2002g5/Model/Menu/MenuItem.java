@@ -4,12 +4,24 @@ public class MenuItem {
     private String name, description;
     private ItemType type;
     private Double price;
+    private int promotionID;
+
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
+    }
+
+    private int itemID;
 
     public MenuItem(String name, ItemType type, String description, Double price) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.type = type;
+        this.promotionID = -1;
     }
 
     public String getName() {
@@ -32,4 +44,15 @@ public class MenuItem {
         this.price = newPrice;
     }
 
+    public int getPromotionID() {
+        return this.promotionID;
+    }
+
+    public void setPromotionID(int id) {
+        this.promotionID = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
