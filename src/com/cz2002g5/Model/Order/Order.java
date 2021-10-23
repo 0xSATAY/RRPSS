@@ -5,7 +5,6 @@ import com.cz2002g5.Model.Menu.PromotionalSet;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -52,12 +51,11 @@ public class Order {
 
     public double getTotalPrice() {
         double totalCost = 0;
-        for (int i=0;i<this.orderItems.size();i++) {
-            MenuItem item = this.orderItems.get(i);
+        for (MenuItem item : this.orderItems) {
             totalCost += item.getPrice();
         }
-        for (int i=0;i<this.promotionalSets.size();i++) {
-            totalCost += this.promotionalSets.get(i).getPrice();
+        for (PromotionalSet promotionalSet : this.promotionalSets) {
+            totalCost += promotionalSet.getPrice();
         }
         return totalCost;
     }
@@ -89,7 +87,7 @@ public class Order {
         return all;
     }
 
-    public void printInvoice() {
+    public void printInvoice(boolean isMember) {
         ArrayList<MenuItem> all = this.getAllItemOrders();
         System.out.println("--------------0xCAFEBABE  Cafe--------------");
         System.out.println("            21 Lien Ying Chow Dr            ");
@@ -107,11 +105,15 @@ public class Order {
             System.out.println(itemString);
         }
         System.out.println("--------------------------------------------");
-        System.out.println("Subtotal: " + NumberFormat.getCurrencyInstance().format(this.getTotalPrice()));
-        System.out.println("7% GST: " + NumberFormat.getCurrencyInstance().format(this.getTotalPrice()*0.07));
-        System.out.println("TOTAL: " + NumberFormat.getCurrencyInstance().format(this.getTotalPrice()*1.07));
+        double total = this.getTotalPrice();
+        System.out.println("Subtotal: " + NumberFormat.getCurrencyInstance().format(total));
+        if (isMember) {
+            total *= 0.9;
+            System.out.println("10% discount for members: -" + NumberFormat.getCurrencyInstance().format(this.getTotalPrice()-total));
+        }
+        System.out.println("7% GST: " + NumberFormat.getCurrencyInstance().format(total*0.07));
+        System.out.println("TOTAL: " + NumberFormat.getCurrencyInstance().format(total*1.07));
         System.out.println("--------------------------------------------");
-
     }
 }
 

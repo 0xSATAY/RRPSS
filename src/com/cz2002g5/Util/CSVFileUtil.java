@@ -1,7 +1,6 @@
 package com.cz2002g5.Util;
 
 import com.cz2002g5.Model.Menu.ItemType;
-import com.cz2002g5.Model.Menu.Menu;
 import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Menu.PromotionalSet;
 
@@ -9,6 +8,16 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class CSVFileUtil {
+
+    public static ArrayList<String> readFile(String filename) throws IOException {
+        BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/"+filename));
+        String row;
+        ArrayList<String> rows = new ArrayList<>();
+        while ((row = csvReader.readLine()) != null) {
+            rows.add(row);
+        }
+        return rows;
+    }
     public static ArrayList<MenuItem> generateMenuItemListFromFile() throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
         String row;
@@ -33,23 +42,11 @@ public class CSVFileUtil {
     }
 
     public static ArrayList<String> readMenuFile() throws IOException {
-        BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
-        String row;
-        ArrayList<String> rows = new ArrayList<>();
-        while ((row = csvReader.readLine()) != null) {
-            rows.add(row);
-        }
-        return rows;
+        return readFile("menu.txt");
     }
 
     public static ArrayList<String> readPromoMenuFile() throws IOException {
-        BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
-        String row;
-        ArrayList<String> rows = new ArrayList<>();
-        while ((row = csvReader.readLine()) != null) {
-            rows.add(row);
-        }
-        return rows;
+        return readFile("promomenu.txt");
     }
 
     public static void addItemToMenu(MenuItem item) throws IOException {
@@ -132,12 +129,12 @@ public class CSVFileUtil {
     public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
         String row;
-        String setItems = "";
+        StringBuilder setItems = new StringBuilder();
         for (MenuItem mi : item.getSetItems()) {
-            setItems += mi.getName();
-            setItems += ",";
+            setItems.append(mi.getName());
+            setItems.append(",");
         }
-        setItems = setItems.substring(0,setItems.length()-1);
+        setItems = new StringBuilder(setItems.substring(0, setItems.length() - 1));
         String promoString = item.getName() + ";" + item.getPrice() + ";" + setItems;
         ArrayList<String> rows = new ArrayList<>();
         while ((row = csvReader.readLine()) != null) {
@@ -156,15 +153,35 @@ public class CSVFileUtil {
     }
 
     public static void addItemToPromoMenu(PromotionalSet item) throws IOException {
-        String setItems = "";
+        StringBuilder setItems = new StringBuilder();
         for (MenuItem mi : item.getSetItems()) {
-            setItems += mi.getName();
-            setItems += ",";
+            setItems.append(mi.getName());
+            setItems.append(",");
         }
-        setItems = setItems.substring(0,setItems.length()-1);
+        setItems = new StringBuilder(setItems.substring(0, setItems.length() - 1));
         String promoString = item.getName() + ";" + item.getPrice() + ";" + setItems;
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/promomenu.txt", true));
         writer.write(promoString);
         writer.close();
+    }
+
+    public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems) throws IOException {
+        BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/revenuereport.txt"));
+        String row;
+        ArrayList<String> rows = new ArrayList<>();
+        while ((row = csvReader.readLine()) != null) {
+            rows.add(row);
+        }
+        rows.addAll(orderItems);
+        BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/revenuereport.txt", true));
+        for (String r : rows) {
+            writer.write(r);
+            writer.newLine();
+        }
+        writer.close();
+    }
+
+    public static ArrayList<String> readRevenueReport() throws IOException {
+        return readFile("revenuereport.txt");
     }
 }

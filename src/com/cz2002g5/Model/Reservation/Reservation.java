@@ -1,10 +1,7 @@
 package com.cz2002g5.Model.Reservation;
 
-import com.cz2002g5.Model.Restaurant.Table;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 public class Reservation {
     private LocalDate date;

@@ -4,9 +4,8 @@ import com.cz2002g5.Controller.RRPSS;
 
 import java.io.IOException;
 
-// TODO: Javadocs and Comments
+// TODO: Javadocs
 public class Main {
-
     public static void main(String[] args) throws IOException {
         RRPSS pos = new RRPSS();
         pos.run();

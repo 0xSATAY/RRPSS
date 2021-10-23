@@ -1,7 +1,6 @@
 package com.cz2002g5.Controller;
 
 import com.cz2002g5.Model.Reservation.Reservation;
-import com.cz2002g5.Model.Restaurant.Table;
 import com.cz2002g5.View.CreateReservationView;
 import com.cz2002g5.View.DeleteReservationView;
 import com.cz2002g5.View.ReservationEditorView;

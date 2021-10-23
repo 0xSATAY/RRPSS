@@ -7,16 +7,10 @@ import java.util.ArrayList;
 public class Table {
     Integer id, seatingCapacity;
     ArrayList<Reservation> reservations = new ArrayList<>();
-
-    public Boolean isOccupied() {
-        return occupied;
-    }
-
-    public void setOccupied(Boolean occupied) {
-        this.occupied = occupied;
-    }
-
     Boolean occupied = false;
+
+
+
     public Table(Integer id, Integer seatingCapacity) {
         this.id = id;
         this.seatingCapacity = seatingCapacity;
@@ -39,6 +33,12 @@ public class Table {
         return this.seatingCapacity;
     }
 
+    public Boolean isOccupied() {
+        return occupied;
+    }
 
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
+    }
 }
 

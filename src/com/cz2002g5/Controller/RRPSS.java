@@ -1,6 +1,5 @@
 package com.cz2002g5.Controller;
 
-import com.cz2002g5.Model.Customer.Customer;
 import com.cz2002g5.Model.Menu.Menu;
 import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Menu.PromotionalSet;
@@ -17,13 +16,10 @@ import java.util.Scanner;
 
 public class RRPSS {
     private final Restaurant restaurant;
-    private final ArrayList<Customer> customerList = new ArrayList<>();
     private final ArrayList<Order> orders = new ArrayList<>();
     private final Menu menu;
     private ArrayList<PromotionalSet> promotionalSets;
     private View view;
-
-    private PromotionEditController pe;
 
     public RRPSS() throws IOException {
         this.restaurant = new Restaurant();
@@ -127,7 +123,9 @@ public class RRPSS {
                     this.view = new WelcomeView();
                     getCurrentView(this).display();
                     break;
-                case 10: //TODO
+                case 10:
+                    RevenueReportController rrc = new RevenueReportController();
+                    rrc.generateRevenueReport();
                     this.view = new WelcomeView();
                     getCurrentView(this).display();
                     break;
@@ -167,9 +165,8 @@ public class RRPSS {
             e.printStackTrace();
         }
         for (int i=0;i<promotionalSets.size();i++) {
-            promoString.append(new StringBuilder().append(i + 1).append(". ").append(promotionalSets.get(i).getName())
-                    .append(" - ").append(NumberFormat.getCurrencyInstance().format(promotionalSets.get(i).getPrice()))
-                    .append("\n"));
+            promoString.append(i + 1).append(". ").append(promotionalSets.get(i).getName()).append(" - ")
+                    .append(NumberFormat.getCurrencyInstance().format(promotionalSets.get(i).getPrice())).append("\n");
         }
         return promoString.toString();
     }
@@ -183,9 +180,8 @@ public class RRPSS {
             e.printStackTrace();
         }
         for (int i=0;i<menu.size();i++) {
-            menuString.append(new StringBuilder().append(i + 1).append(". ").append(menu.get(i).getName())
-                    .append(" - ").append(NumberFormat.getCurrencyInstance().format(menu.get(i).getPrice()))
-                    .append("\n"));
+            menuString.append(i + 1).append(". ").append(menu.get(i).getName()).append(" - ")
+                    .append(NumberFormat.getCurrencyInstance().format(menu.get(i).getPrice())).append("\n");
         }
         return menuString.toString();
     }

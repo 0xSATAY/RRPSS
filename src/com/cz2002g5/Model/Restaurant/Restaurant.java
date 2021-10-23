@@ -42,12 +42,10 @@ public class Restaurant {
                     reservationFound = false;// if reservation is found, move on to next iteration
                     continue;
                 }
-                if (!reservationFound && !checkAvail) { // if reservation is not found return data accordingly
+                if (!checkAvail) { // if reservation is not found return data accordingly
                     this.tables.get(i).addReservation(reservation);
-                    return i;
-                } else if (!reservationFound && checkAvail) {
-                    return i;
                 }
+                return i;
             }
 
         }

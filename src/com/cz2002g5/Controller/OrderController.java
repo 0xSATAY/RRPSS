@@ -5,7 +5,7 @@ import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Menu.PromotionalSet;
 import com.cz2002g5.Model.Order.Order;
 import com.cz2002g5.Model.Restaurant.Restaurant;
-import com.cz2002g5.Util.CSVFileUtil;
+import com.cz2002g5.Model.Restaurant.Table;
 import com.cz2002g5.View.CreateOrderView;
 import com.cz2002g5.View.OrderEditorView;
 import com.cz2002g5.View.RemoveOrderItemView;
@@ -13,12 +13,14 @@ import com.cz2002g5.View.UpdateOrderItemView;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderController {
 
-    public void selectAction(RRPSS pos) throws IOException {
+    public void selectAction(RRPSS pos) {
         while (true) {
             Scanner sc = new Scanner(System.in);
             RRPSS.updateView(pos, new OrderEditorView());
@@ -108,11 +110,9 @@ public class OrderController {
             sc.next();
         }
         input = sc.nextInt()-1;
-        boolean done = false;
-        if (input == -1) done = true;
         Menu menu = RRPSS.getMenu(pos);
         Order order = new Order(employeeID,tableNumber,numOfCustomers);
-        while (!done) {
+        while (true) {
             if (input>=0 && input<menu.getMenuItems().size()) {
                 order.addItem(menu.getMenuItems().get(input));
                 System.out.println(menu.getMenuItems().get(input).getName() +
@@ -142,10 +142,7 @@ public class OrderController {
         }
         input = sc.nextInt()-1;
         ArrayList<PromotionalSet> promotionalSets = RRPSS.getPromotionalSets(pos);
-        done = false;
-        if (input == -1) {
-            done = true;
-        }
+        boolean done = input == -1;
         if (done) {
             System.out.println("Items in your order:");
             int counter = 0;
@@ -207,7 +204,7 @@ public class OrderController {
         }
     }
 
-    public void addItemToOrder(RRPSS pos) throws IOException {
+    public void addItemToOrder(RRPSS pos) {
         Scanner sc = new Scanner(System.in);
         UpdateOrderItemView uoiv = new UpdateOrderItemView();
         RRPSS.updateView(pos, uoiv);
@@ -233,7 +230,7 @@ public class OrderController {
             System.out.println("You have entered an invalid option!\nSelect the order you wish to add item to:");
             sc.next();
         }
-        Integer orderSelection = sc.nextInt();
+        int orderSelection = sc.nextInt();
         if (orderSelection == 0) {
             return;
         }
@@ -244,7 +241,6 @@ public class OrderController {
         orderSelection--;
         Order orderSelected = pos.getOrders().get(orderSelection);
         System.out.println("Add item to order #" + (orderSelection+1));
-        counter = 1;
         ArrayList<MenuItem> menuItems = RRPSS.getMenu(pos).getMenuItems();
         ArrayList<PromotionalSet> promotionalSets = RRPSS.getPromotionalSets(pos);
         for (MenuItem item : menuItems) {
@@ -255,13 +251,12 @@ public class OrderController {
             System.out.println(counter + ": " + ps.getName() + " - " + NumberFormat.getCurrencyInstance().format(ps.getPrice()));
             counter++;
         }
-        counter = 1;
         System.out.println("Select the item you wish to add:");
         while (!sc.hasNextInt()) {
             System.out.println("You have entered an invalid option!\nSelect the item you wish to add:");
             sc.next();
         }
-        Integer itemSelection = sc.nextInt();
+        int itemSelection = sc.nextInt();
         if (itemSelection < 1 || itemSelection > menuItems.size()+promotionalSets.size()) {
             System.out.println("You have entered an invalid item!");
             return;
@@ -281,7 +276,6 @@ public class OrderController {
             System.out.println(item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
         }
         System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(orderSelected.getTotalPrice()) + "\n");
-        return;
     }
 
     public void removeItemFromOrder(RRPSS pos) {
@@ -314,7 +308,7 @@ public class OrderController {
             System.out.println("You have entered an invalid option!\nSelect the order you wish to remove item from:");
             sc.next();
         }
-        Integer orderSelection = sc.nextInt();
+        int orderSelection = sc.nextInt();
         if (orderSelection == 0) {
             return;
         }
@@ -325,7 +319,6 @@ public class OrderController {
         orderSelection--;
         Order orderSelected = pos.getOrders().get(orderSelection);
         System.out.println("Remove item from order #" + (orderSelection+1));
-        counter = 1;
         for (MenuItem item : orderSelected.getOrderItems()) {
             System.out.println(counter + ": " + item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
             counter++;
@@ -339,7 +332,7 @@ public class OrderController {
             System.out.println("You have entered an invalid option!\nSelect the item you wish to remove:");
             sc.next();
         }
-        Integer itemSelection = sc.nextInt();
+        int itemSelection = sc.nextInt();
         if (itemSelection < 1 || itemSelection > orderSelected.getTotalOrderSize()) {
             System.out.println("You have entered an invalid item!");
             return;
@@ -362,10 +355,9 @@ public class OrderController {
             System.out.println(item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
         }
         System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(orderSelected.getTotalPrice()) + "\n");
-        return;
     }
 
-    public void generateInvoice(RRPSS pos) {
+    public void generateInvoice(RRPSS pos) throws IOException {
         Scanner sc = new Scanner(System.in);
         int counter = 1;
         for (Order order : pos.getOrders()) {
@@ -402,6 +394,15 @@ public class OrderController {
         }
         orderSelection--;
         Order orderSelected = pos.getOrders().get(orderSelection);
-        orderSelected.printInvoice();
+        System.out.println("Is customer a member? (Y/N):");
+        String isMemberString = sc.next();
+        System.out.println(isMemberString);
+        boolean isMember = isMemberString.toUpperCase(Locale.ROOT).equals("Y");
+        orderSelected.printInvoice(isMember);
+        Table billingTable = pos.getRestaurant().getTables().get(orderSelected.getTableNumber()-1);
+        billingTable.setOccupied(false);
+        pos.getOrders().remove(orderSelected);
+        RevenueReportController rrc = new RevenueReportController();
+        rrc.addOrderItemsToRevenueReport(orderSelected, LocalDate.now());
     }
 }

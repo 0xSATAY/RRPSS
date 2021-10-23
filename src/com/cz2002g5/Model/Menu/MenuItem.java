@@ -1,8 +1,9 @@
 package com.cz2002g5.Model.Menu;
 
 public class MenuItem {
-    private String name, description;
-    private ItemType type;
+    private String name;
+    private final String description;
+    private final ItemType type;
     private Double price;
     private int promotionID;
 

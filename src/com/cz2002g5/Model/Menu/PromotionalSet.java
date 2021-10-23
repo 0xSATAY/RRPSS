@@ -6,8 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PromotionalSet extends MenuItem {
     public static final AtomicInteger count = new AtomicInteger(0);
     private int id;
-    private ArrayList<MenuItem> setItems = new ArrayList<>();
-    private String name;
+    private final ArrayList<MenuItem> setItems = new ArrayList<>();
     private Double price;
 
     public PromotionalSet(String name, ItemType type, String description, Double price) {
@@ -16,8 +15,7 @@ public class PromotionalSet extends MenuItem {
 
     public PromotionalSet(String name) {
         super(name, null, null, null);
-        this.name = name;
-        this.id = this.count.incrementAndGet();
+        this.id = count.incrementAndGet();
     }
 
     public int getId() {
