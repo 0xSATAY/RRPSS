@@ -2,18 +2,18 @@ package com.cz2002g5.View;
 
 public class CreateOrderView implements View {
     @Override
-    public void show() {
+    public void display() {
         System.out.println("Create Order");
     }
 
     @Override
-    public void show(String s) {
+    public void displayCustomView(String s) {
         System.out.println(s);
         System.out.println("Select an item from the menu:");
     }
 
     public void showMenu(String menuString) {
-        this.show(menuString);
+        this.displayCustomView(menuString);
     }
 
     public void showEmployeeIDView() {

@@ -36,11 +36,11 @@ public class RRPSS {
     }
 
     public static void showView(RRPSS pos) {
-        getCurrentView(pos).show();
+        getCurrentView(pos).display();
     }
 
     public static void showView(RRPSS pos, String param) {
-        getCurrentView(pos).show(param);
+        getCurrentView(pos).displayCustomView(param);
     }
 
     public static View getCurrentView(RRPSS pos) {
@@ -58,7 +58,7 @@ public class RRPSS {
     public void run() throws IOException {
         while (true) {
             RRPSS.updateView(this,new WelcomeView());
-            getCurrentView(this).show();
+            getCurrentView(this).display();
             this.selectMainViewOption();
         }
     }
@@ -77,51 +77,59 @@ public class RRPSS {
                     MenuItemController mic = new MenuItemController();
                     mic.selectAction(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
                 case 2:
                     PromotionEditController pec = new PromotionEditController();
                     pec.selectAction(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
                 case 3:
                     OrderController oc = new OrderController();
                     oc.createOrder(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
                 case 4:
                     oc = new OrderController();
                     oc.viewAllOrders(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
                 case 5:
                     oc = new OrderController();
                     oc.selectAction(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
-                case 6: //TODO
+                case 6:
+                    ReservationController rc = new ReservationController();
+                    rc.createReservation(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
-                case 7: //TODO
+                case 7:
+                    rc = new ReservationController();
+                    rc.selectAction(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
-                case 8: //TODO
+                case 8:
+                    rc = new ReservationController();
+                    rc.checkAvailability(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
-                case 9: //TODO
+                case 9:
+                    oc = new OrderController();
+                    oc.generateInvoice(this);
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
                 case 10: //TODO
                     this.view = new WelcomeView();
-                    getCurrentView(this).show();
+                    getCurrentView(this).display();
                     break;
                 default:
                     System.out.println("You have selected an invalid option!");

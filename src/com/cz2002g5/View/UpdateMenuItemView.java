@@ -1,7 +1,5 @@
 package com.cz2002g5.View;
 
-import com.cz2002g5.Model.Menu.ItemType;
-
 public class UpdateMenuItemView implements View{
     public void showUpdateNameView(String name) {
         System.out.println("New name for " + name + " (or press Enter to keep prev name):");
@@ -20,13 +18,13 @@ public class UpdateMenuItemView implements View{
     }
 
     @Override
-    public void show() {
+    public void display() {
         System.out.println("---Updating Item---");
     }
 
     @Override
-    public void show(String menu) {
-        this.show();
+    public void displayCustomView(String menu) {
+        this.display();
         System.out.println(menu);
         System.out.println("Enter the item you wish to edit. To cancel enter 0:");
     }

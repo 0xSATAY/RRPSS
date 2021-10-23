@@ -1,7 +1,7 @@
 package com.cz2002g5.View;
 
 public class WelcomeView implements View {
-    public void show() {
+    public void display() {
         System.out.println("Welcome to the Restaurant Reservation and Point of Sales System!\n" +
                 "What can I do for you today?");
         System.out.println("1. Create/Update/Remove menu item\n" +
@@ -17,7 +17,7 @@ public class WelcomeView implements View {
     }
 
     @Override
-    public void show(String s) {
+    public void displayCustomView(String s) {
 
     }
 }

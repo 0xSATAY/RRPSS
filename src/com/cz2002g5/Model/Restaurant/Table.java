@@ -1,8 +1,12 @@
 package com.cz2002g5.Model.Restaurant;
 
+import com.cz2002g5.Model.Reservation.Reservation;
+
+import java.util.ArrayList;
+
 public class Table {
     Integer id, seatingCapacity;
-    Boolean booked;
+    ArrayList<Reservation> reservations = new ArrayList<>();
 
     public Boolean isOccupied() {
         return occupied;
@@ -13,26 +17,28 @@ public class Table {
     }
 
     Boolean occupied = false;
-    public Table(Integer id, Integer seatingCapacity, Boolean booked) {
+    public Table(Integer id, Integer seatingCapacity) {
         this.id = id;
         this.seatingCapacity = seatingCapacity;
-        this.booked = booked;
     }
 
     public Integer getTableID() {
         return this.id;
     }
 
+
+    public ArrayList<Reservation> getReservations() {
+        return this.reservations;
+    }
+
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
+
     public Integer getSeatingCapacity() {
         return this.seatingCapacity;
     }
 
-    public Boolean isBooked() {
-        return this.booked;
-    }
 
-    public void setBooked(boolean booked) {
-        this.booked = booked;
-    }
 }
 

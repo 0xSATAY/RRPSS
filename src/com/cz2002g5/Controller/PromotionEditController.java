@@ -1,6 +1,5 @@
 package com.cz2002g5.Controller;
 
-import com.cz2002g5.Model.Menu.ItemType;
 import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Menu.PromotionalSet;
 import com.cz2002g5.Util.CSVFileUtil;
@@ -139,7 +138,7 @@ public class PromotionEditController implements MenuEditController {
             Scanner sc = new Scanner(System.in);
             RRPSS.updateView(pos, new DeletePromoItemView());
             RRPSS.showView(pos);
-            RRPSS.getCurrentView(pos).show(pos.generatePromoMenuString());
+            RRPSS.getCurrentView(pos).displayCustomView(pos.generatePromoMenuString());
             while (!sc.hasNextInt()) {
                 System.out.println("You have inputted a non-numerical value!");
                 System.out.println("Select the item you wish to delete:");

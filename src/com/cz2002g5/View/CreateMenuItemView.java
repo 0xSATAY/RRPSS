@@ -3,12 +3,12 @@ package com.cz2002g5.View;
 public class CreateMenuItemView implements View {
 
     @Override
-    public void show() {
+    public void display() {
         System.out.println("---Creating Item---");
     }
 
     @Override
-    public void show(String s) {
+    public void displayCustomView(String s) {
 
     }
 

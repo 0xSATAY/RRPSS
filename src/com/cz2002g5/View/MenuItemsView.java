@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class MenuItemsView implements View{
     @Override
-    public void show() {
+    public void display() {
         System.out.println("Menu");
     }
 
-    public void show(String generatedMenu) {
+    public void displayCustomView(String generatedMenu) {
         System.out.println(generatedMenu);
     }
 }

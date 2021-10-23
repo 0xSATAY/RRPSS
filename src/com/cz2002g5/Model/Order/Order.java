@@ -3,6 +3,11 @@ package com.cz2002g5.Model.Order;
 import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Menu.PromotionalSet;
 
+import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Order {
@@ -82,6 +87,31 @@ public class Order {
         all.addAll(this.orderItems);
         all.addAll(this.promotionalSets);
         return all;
+    }
+
+    public void printInvoice() {
+        ArrayList<MenuItem> all = this.getAllItemOrders();
+        System.out.println("--------------0xCAFEBABE  Cafe--------------");
+        System.out.println("            21 Lien Ying Chow Dr            ");
+        System.out.println("                   #01-01                   ");
+        System.out.println("--------------------------------------------");
+        System.out.printf( "Table: %01d\n", this.tableNumber+1);
+        System.out.printf( "Date: %s\n", LocalDate.now());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        System.out.printf( "Time: %s\n", LocalTime.now().format(dtf));
+        System.out.println("--------------------------------------------");
+        for (MenuItem item : all) {
+            int numSpaces = 44-item.getName().length()-NumberFormat.getCurrencyInstance().format(item.getPrice()).length();
+            String repeated = new String(new char[numSpaces]).replace("\0", " ");
+            String itemString = item.getName() + repeated + NumberFormat.getCurrencyInstance().format(item.getPrice());
+            System.out.println(itemString);
+        }
+        System.out.println("--------------------------------------------");
+        System.out.println("Subtotal: " + NumberFormat.getCurrencyInstance().format(this.getTotalPrice()));
+        System.out.println("7% GST: " + NumberFormat.getCurrencyInstance().format(this.getTotalPrice()*0.07));
+        System.out.println("TOTAL: " + NumberFormat.getCurrencyInstance().format(this.getTotalPrice()*1.07));
+        System.out.println("--------------------------------------------");
+
     }
 }
 
