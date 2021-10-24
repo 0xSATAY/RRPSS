@@ -7,9 +7,19 @@ import com.cz2002g5.Model.Menu.PromotionalSet;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The type Csv file util.
+ */
 public class CSVFileUtil {
 
-    public static ArrayList<String> readFile(String filename) throws IOException {
+    /**
+     * Read file array list.
+     *
+     * @param filename the filename
+     * @return the array list
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static ArrayList<String> readFile(String filename) throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/"+filename));
         String row;
         ArrayList<String> rows = new ArrayList<>();
@@ -18,7 +28,13 @@ public class CSVFileUtil {
         }
         return rows;
     }
-    public static ArrayList<MenuItem> generateMenuItemListFromFile() throws IOException {
+    /**
+     * Generate menu item list from file array list.
+     *
+     * @return the array list
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static ArrayList<MenuItem> generateMenuItemListFromFile() throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
         String row;
         ArrayList<MenuItem> menuItems = new ArrayList<>();
@@ -31,7 +47,14 @@ public class CSVFileUtil {
         return menuItems;
     }
 
-    public static MenuItem getItemByName(String name) throws IOException {
+    /**
+     * Gets item by name.
+     *
+     * @param name the name
+     * @return the item by name
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static MenuItem getItemByName(String name) throws IOException {
         ArrayList<MenuItem> menuItems = generateMenuItemListFromFile();
         for (MenuItem item : menuItems) {
             if (item.getName().equals(name)) {
@@ -41,22 +64,47 @@ public class CSVFileUtil {
         return null;
     }
 
-    public static ArrayList<String> readMenuFile() throws IOException {
+    /**
+     * Read menu file array list.
+     *
+     * @return the array list
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static ArrayList<String> readMenuFile() throws IOException {
         return readFile("menu.txt");
     }
 
-    public static ArrayList<String> readPromoMenuFile() throws IOException {
+    /**
+     * Read promo menu file array list.
+     *
+     * @return the array list
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static ArrayList<String> readPromoMenuFile() throws IOException {
         return readFile("promomenu.txt");
     }
 
-    public static void addItemToMenu(MenuItem item) throws IOException {
+    /**
+     * Add item to menu.
+     *
+     * @param item the item
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static void addItemToMenu(MenuItem item) throws IOException {
         String itemString = item.getName() + ";" + item.getType().toString() + ";" + item.getDescription() + ";" + item.getPrice().toString() + "\n";
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/menu.txt", true));
         writer.write(itemString);
         writer.close();
     }
 
-    public static void updateMenuByIndex(int itemIndex, MenuItem item) throws IOException {
+    /**
+     * Update menu by index.
+     *
+     * @param itemIndex the item index
+     * @param item the item
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static void updateMenuByIndex(int itemIndex, MenuItem item) throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
         String row;
         String itemString = item.getName() + ";" + item.getType().toString() + ";" + item.getDescription() + ";" + item.getPrice().toString();
@@ -76,7 +124,13 @@ public class CSVFileUtil {
         writer.close();
     }
 
-    public static void removeMenuItemByIndex(int index) throws IOException {
+    /**
+     * Remove menu item by index.
+     *
+     * @param index the index
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static void removeMenuItemByIndex(int index) throws IOException {
         ArrayList<String> fileContent = readMenuFile();
         fileContent.remove(index);
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/menu.txt", false));
@@ -90,7 +144,13 @@ public class CSVFileUtil {
         writer.close();
     }
 
-    public static ArrayList<PromotionalSet> generatePromoMenuItemListFromFile() throws IOException {
+    /**
+     * Generate promo menu item list from file array list.
+     *
+     * @return the array list
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static ArrayList<PromotionalSet> generatePromoMenuItemListFromFile() throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
         String row;
         ArrayList<PromotionalSet> promotionalSets = new ArrayList<>();
@@ -112,7 +172,13 @@ public class CSVFileUtil {
         return promotionalSets;
     }
 
-    public static void removePromoItemByIndex(int index) throws IOException {
+    /**
+     * Remove promo item by index.
+     *
+     * @param index the index
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static void removePromoItemByIndex(int index) throws IOException {
         ArrayList<String> fileContent = readPromoMenuFile();
         fileContent.remove(index);
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/promomenu.txt", false));
@@ -126,7 +192,14 @@ public class CSVFileUtil {
         writer.close();
     }
 
-    public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) throws IOException {
+    /**
+     * Update promo menu by index.
+     *
+     * @param itemIndex the item index
+     * @param item the item
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
         String row;
         StringBuilder setItems = new StringBuilder();
@@ -152,7 +225,13 @@ public class CSVFileUtil {
         writer.close();
     }
 
-    public static void addItemToPromoMenu(PromotionalSet item) throws IOException {
+    /**
+     * Add item to promo menu.
+     *
+     * @param item the item
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static void addItemToPromoMenu(PromotionalSet item) throws IOException {
         StringBuilder setItems = new StringBuilder();
         for (MenuItem mi : item.getSetItems()) {
             setItems.append(mi.getName());
@@ -165,7 +244,13 @@ public class CSVFileUtil {
         writer.close();
     }
 
-    public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems) throws IOException {
+    /**
+     * Add order items to revenue report csv.
+     *
+     * @param orderItems the order items
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems) throws IOException {
         BufferedReader csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/revenuereport.txt"));
         String row;
         ArrayList<String> rows = new ArrayList<>();
@@ -181,7 +266,13 @@ public class CSVFileUtil {
         writer.close();
     }
 
-    public static ArrayList<String> readRevenueReport() throws IOException {
+    /**
+     * Read revenue report array list.
+     *
+     * @return the array list
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public static ArrayList<String> readRevenueReport() throws IOException {
         return readFile("revenuereport.txt");
     }
 }

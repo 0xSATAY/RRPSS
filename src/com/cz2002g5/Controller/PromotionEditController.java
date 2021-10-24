@@ -10,6 +10,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Promotion edit controller.
+ */
 public class PromotionEditController implements MenuEditController {
 
     @Override

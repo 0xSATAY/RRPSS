@@ -11,8 +11,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Revenue report controller.
+ */
 public class RevenueReportController {
-    public void generateRevenueReport() throws IOException {
+    /**
+     * Generate revenue report.
+     *
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public void generateRevenueReport() throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter start date (DD/MM/YYYY):");
         LocalDate startDate, endDate;
@@ -55,7 +63,14 @@ public class RevenueReportController {
         System.out.println("--------------------------------------------");
     }
 
-    public void addOrderItemsToRevenueReport(Order order, LocalDate date) throws IOException {
+    /**
+     * Add order items to revenue report.
+     *
+     * @param order the order
+     * @param date the date
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public void addOrderItemsToRevenueReport(Order order, LocalDate date) throws IOException {
         ArrayList<String> orderItems = new ArrayList<>();
         for (MenuItem mi : order.getAllItemOrders()) {
             String generatedString = date.toString() + ";" + mi.getName() + ";" + mi.getPrice().toString();

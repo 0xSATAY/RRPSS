@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Create promo set view.
+ */
 public class CreatePromoSetView implements View {
     @Override
     public void display() {
@@ -11,15 +14,24 @@ public class CreatePromoSetView implements View {
 
     }
 
-    public void showAddItemView() {
+    /**
+     * Show add item view.
+     */
+public void showAddItemView() {
         System.out.println("Select item to be added into the promo set. To cancel enter 0:");
     }
 
-    public void showAddPriceView() {
+    /**
+     * Show add price view.
+     */
+public void showAddPriceView() {
         System.out.println("Enter price of promo set:");
     }
 
-    public void showAddNameView() {
+    /**
+     * Show add name view.
+     */
+public void showAddNameView() {
         System.out.println("Enter the name of your promo set:");
     }
 }

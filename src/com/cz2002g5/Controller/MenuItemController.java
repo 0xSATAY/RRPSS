@@ -12,8 +12,15 @@ import com.cz2002g5.View.UpdateMenuItemView;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * This class controls the menu items.
+ */
 public class MenuItemController implements MenuEditController {
-
+    /**
+     *
+     * @param pos The instance of the main RRPSS controller
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
     @Override
     public void selectAction(RRPSS pos) throws IOException {
         while (true) {

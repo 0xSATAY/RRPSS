@@ -1,6 +1,17 @@
 package com.cz2002g5.View;
 
+/**
+ * The interface View.
+ */
 public interface View {
-    void display();
-    void displayCustomView(String s);
+    /**
+     * Display.
+     */
+void display();
+    /**
+     * Display custom view.
+     *
+     * @param s the s
+     */
+void displayCustomView(String s);
 }

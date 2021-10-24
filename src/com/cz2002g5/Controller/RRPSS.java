@@ -14,6 +14,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Rrpss.
+ */
 public class RRPSS {
     private final Restaurant restaurant;
     private final ArrayList<Order> orders = new ArrayList<>();
@@ -21,37 +24,82 @@ public class RRPSS {
     private ArrayList<PromotionalSet> promotionalSets;
     private View view;
 
-    public RRPSS() throws IOException {
+    /**
+     * Instantiates a new Rrpss.
+     *
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public RRPSS() throws IOException {
         this.restaurant = new Restaurant();
         this.menu = new Menu(CSVFileUtil.generateMenuItemListFromFile());
         this.promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
     }
 
-    public static void updateView(RRPSS pos, View view) {
+    /**
+     * Update view.
+     *
+     * @param pos The instance of the main RRPSS controller
+     * @param view the view
+     */
+public static void updateView(RRPSS pos, View view) {
         pos.view = view;
     }
 
-    public static void showView(RRPSS pos) {
+    /**
+     * Show view.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public static void showView(RRPSS pos) {
         getCurrentView(pos).display();
     }
 
-    public static void showView(RRPSS pos, String param) {
+    /**
+     * Show view.
+     *
+     * @param pos The instance of the main RRPSS controller
+     * @param param the param
+     */
+public static void showView(RRPSS pos, String param) {
         getCurrentView(pos).displayCustomView(param);
     }
 
-    public static View getCurrentView(RRPSS pos) {
+    /**
+     * Gets current view.
+     *
+     * @param pos The instance of the main RRPSS controller
+     * @return the current view
+     */
+public static View getCurrentView(RRPSS pos) {
         return pos.view;
     }
 
-    public static Menu getMenu(RRPSS pos) {
+    /**
+     * Gets menu.
+     *
+     * @param pos The instance of the main RRPSS controller
+     * @return the menu
+     */
+public static Menu getMenu(RRPSS pos) {
         return pos.menu;
     }
 
-    public static ArrayList<PromotionalSet> getPromotionalSets(RRPSS pos) {
+    /**
+     * Gets promotional sets.
+     *
+     * @param pos The instance of the main RRPSS controller
+     * @return the promotional sets
+     */
+public static ArrayList<PromotionalSet> getPromotionalSets(RRPSS pos) {
         return pos.promotionalSets;
     }
 
-    public void run() throws IOException {
+    /**
+     * Run.
+     *
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public void run() throws IOException {
         while (true) {
             RRPSS.updateView(this,new WelcomeView());
             getCurrentView(this).display();
@@ -135,28 +183,58 @@ public class RRPSS {
         }
     }
 
-    public void reloadMenu() throws IOException {
+    /**
+     * Reload menu.
+     *
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public void reloadMenu() throws IOException {
         this.menu.setMenuItems(CSVFileUtil.generateMenuItemListFromFile());
         this.promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
     }
 
-    public void addOrder(Order order) {
+    /**
+     * Add order.
+     *
+     * @param order the order
+     */
+public void addOrder(Order order) {
         this.orders.add(order);
     }
 
-    public ArrayList<Order> getOrders() {
+    /**
+     * Gets orders.
+     *
+     * @return the orders
+     */
+public ArrayList<Order> getOrders() {
         return this.orders;
     }
 
-    public Restaurant getRestaurant() {
+    /**
+     * Gets restaurant.
+     *
+     * @return the restaurant
+     */
+public Restaurant getRestaurant() {
         return this.restaurant;
     }
 
-    public void addPromoSet(PromotionalSet pi) {
+    /**
+     * Add promo set.
+     *
+     * @param pi the pi
+     */
+public void addPromoSet(PromotionalSet pi) {
         this.promotionalSets.add(pi);
     }
 
-    public String generatePromoMenuString() {
+    /**
+     * Generate promo menu string string.
+     *
+     * @return the string
+     */
+public String generatePromoMenuString() {
         ArrayList<PromotionalSet> promotionalSets = new ArrayList<>();
         StringBuilder promoString = new StringBuilder();
         try {
@@ -171,7 +249,12 @@ public class RRPSS {
         return promoString.toString();
     }
 
-    public String generateMenuString() {
+    /**
+     * Generate menu string string.
+     *
+     * @return the string
+     */
+public String generateMenuString() {
         ArrayList<MenuItem> menu = new ArrayList<>();
         StringBuilder menuString = new StringBuilder();
         try {

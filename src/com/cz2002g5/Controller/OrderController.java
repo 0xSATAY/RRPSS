@@ -18,9 +18,17 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * The type Order controller.
+ */
 public class OrderController {
 
-    public void selectAction(RRPSS pos) {
+    /**
+     * Select action.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void selectAction(RRPSS pos) {
         while (true) {
             Scanner sc = new Scanner(System.in);
             RRPSS.updateView(pos, new OrderEditorView());
@@ -43,7 +51,12 @@ public class OrderController {
         }
     }
 
-    public void viewAllOrders(RRPSS pos) {
+    /**
+     * View all orders.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void viewAllOrders(RRPSS pos) {
         ArrayList<Order> orders = pos.getOrders();
         if (orders.size() == 0) {
             System.out.println("There are no orders.");
@@ -64,7 +77,12 @@ public class OrderController {
         }
     }
 
-    public void createOrder(RRPSS pos) {
+    /**
+     * Create order.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void createOrder(RRPSS pos) {
         Scanner sc = new Scanner(System.in);
         CreateOrderView cov = new CreateOrderView();
         RRPSS.updateView(pos,cov);
@@ -204,7 +222,12 @@ public class OrderController {
         }
     }
 
-    public void addItemToOrder(RRPSS pos) {
+    /**
+     * Add item to order.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void addItemToOrder(RRPSS pos) {
         Scanner sc = new Scanner(System.in);
         UpdateOrderItemView uoiv = new UpdateOrderItemView();
         RRPSS.updateView(pos, uoiv);
@@ -278,7 +301,12 @@ public class OrderController {
         System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(orderSelected.getTotalPrice()) + "\n");
     }
 
-    public void removeItemFromOrder(RRPSS pos) {
+    /**
+     * Remove item from order.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void removeItemFromOrder(RRPSS pos) {
         Scanner sc = new Scanner(System.in);
         RemoveOrderItemView roiv = new RemoveOrderItemView();
         RRPSS.updateView(pos, roiv);
@@ -357,7 +385,13 @@ public class OrderController {
         System.out.println("Total: " + NumberFormat.getCurrencyInstance().format(orderSelected.getTotalPrice()) + "\n");
     }
 
-    public void generateInvoice(RRPSS pos) throws IOException {
+    /**
+     * Generate invoice.
+     *
+     * @param pos The instance of the main RRPSS controller
+     * @throws IOException Thrown if file is not found when calling CSVFileUtil class methods io exception
+     */
+public void generateInvoice(RRPSS pos) throws IOException {
         Scanner sc = new Scanner(System.in);
         int counter = 1;
         for (Order order : pos.getOrders()) {

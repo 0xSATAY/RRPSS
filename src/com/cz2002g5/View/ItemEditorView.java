@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Item editor view.
+ */
 public class ItemEditorView implements View{
     @Override
     public void display() {

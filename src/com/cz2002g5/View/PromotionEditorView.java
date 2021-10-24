@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Promotion editor view.
+ */
 public class PromotionEditorView implements View{
 
     @Override

@@ -12,10 +12,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Reservation controller.
+ */
 public class ReservationController {
-    public static String[] timings = {"11:00AM", "11:30AM", "12:00PM", "12:30PM", "01:00PM", "01:30PM", "06:00PM", "06:30PM", "07:00PM", "07:30PM", "08:00PM", "08:30PM"};
+    /**
+     * The Timings.
+     */
+public static String[] timings = {"11:00AM", "11:30AM", "12:00PM", "12:30PM", "01:00PM", "01:30PM", "06:00PM", "06:30PM", "07:00PM", "07:30PM", "08:00PM", "08:30PM"};
 
-    public void selectAction(RRPSS pos) {
+    /**
+     * Select action.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void selectAction(RRPSS pos) {
         while (true) {
             Scanner sc = new Scanner(System.in);
             ReservationEditorView rev = new ReservationEditorView();
@@ -78,7 +89,12 @@ public class ReservationController {
         }
     }
 
-    public void createReservation(RRPSS pos) {
+    /**
+     * Create reservation.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void createReservation(RRPSS pos) {
         LocalDate date;
         CreateReservationView crv = new CreateReservationView();
         RRPSS.updateView(pos,crv);
@@ -146,7 +162,12 @@ public class ReservationController {
         }
     }
 
-    public void checkAvailability(RRPSS pos) {
+    /**
+     * Check availability.
+     *
+     * @param pos The instance of the main RRPSS controller
+     */
+public void checkAvailability(RRPSS pos) {
         LocalDate date;
         CreateReservationView crv = new CreateReservationView();
         RRPSS.updateView(pos,crv);

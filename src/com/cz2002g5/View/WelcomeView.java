@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Welcome view.
+ */
 public class WelcomeView implements View {
     public void display() {
         System.out.println("Welcome to the Restaurant Reservation and Point of Sales System!\n" +

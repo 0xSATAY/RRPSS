@@ -9,47 +9,97 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * The type Order.
+ */
 public class Order {
     private final int employeeID, numOfCustomers;
     private int tableNumber;
     private final ArrayList<MenuItem> orderItems = new ArrayList<>();
     private final ArrayList<PromotionalSet> promotionalSets = new ArrayList<>();
 
-    public Order(int employeeID, int tableNumber, int numOfCustomers) {
+    /**
+     * Instantiates a new Order.
+     *
+     * @param employeeID the employee id
+     * @param tableNumber the table number
+     * @param numOfCustomers the num of customers
+     */
+public Order(int employeeID, int tableNumber, int numOfCustomers) {
         this.employeeID = employeeID;
         this.tableNumber = tableNumber;
         this.numOfCustomers = numOfCustomers;
     }
 
-    public void addItem(MenuItem item) {
+    /**
+     * Add item.
+     *
+     * @param item the item
+     */
+public void addItem(MenuItem item) {
         orderItems.add(item);
     }
 
-    public void removeItem(MenuItem item) {
+    /**
+     * Remove item.
+     *
+     * @param item the item
+     */
+public void removeItem(MenuItem item) {
         orderItems.remove(item);
     }
 
-    public void addPromotionalSets(PromotionalSet ps) {
+    /**
+     * Add promotional sets.
+     *
+     * @param ps the ps
+     */
+public void addPromotionalSets(PromotionalSet ps) {
         this.promotionalSets.add(ps);
     }
 
-    public ArrayList<PromotionalSet> getPromotionalSets() {
+    /**
+     * Gets promotional sets.
+     *
+     * @return the promotional sets
+     */
+public ArrayList<PromotionalSet> getPromotionalSets() {
         return this.promotionalSets;
     }
 
-    public void removePromotionalSet(PromotionalSet ps) {
+    /**
+     * Remove promotional set.
+     *
+     * @param ps the ps
+     */
+public void removePromotionalSet(PromotionalSet ps) {
         this.promotionalSets.remove(ps);
     }
 
-    public void removeItem(int index) {
+    /**
+     * Remove item.
+     *
+     * @param index the index
+     */
+public void removeItem(int index) {
         orderItems.remove(index);
     }
 
-    public ArrayList<MenuItem> getOrderItems() {
+    /**
+     * Gets order items.
+     *
+     * @return the order items
+     */
+public ArrayList<MenuItem> getOrderItems() {
         return this.orderItems;
     }
 
-    public double getTotalPrice() {
+    /**
+     * Gets total price.
+     *
+     * @return the total price
+     */
+public double getTotalPrice() {
         double totalCost = 0;
         for (MenuItem item : this.orderItems) {
             totalCost += item.getPrice();
@@ -60,34 +110,69 @@ public class Order {
         return totalCost;
     }
 
-    public int getTableNumber() {
+    /**
+     * Gets table number.
+     *
+     * @return the table number
+     */
+public int getTableNumber() {
         return this.tableNumber;
     }
 
-    public void setTableNumber(int tableNumber) {
+    /**
+     * Sets table number.
+     *
+     * @param tableNumber the table number
+     */
+public void setTableNumber(int tableNumber) {
         this.tableNumber = tableNumber;
     }
 
-    public int getNumOfCustomers() {
+    /**
+     * Gets num of customers.
+     *
+     * @return the num of customers
+     */
+public int getNumOfCustomers() {
         return this.numOfCustomers;
     }
 
-    public int getEmployeeID() {
+    /**
+     * Gets employee id.
+     *
+     * @return the employee id
+     */
+public int getEmployeeID() {
         return this.employeeID;
     }
 
-    public int getTotalOrderSize() {
+    /**
+     * Gets total order size.
+     *
+     * @return the total order size
+     */
+public int getTotalOrderSize() {
         return this.orderItems.size() + this.promotionalSets.size();
     }
 
-    public ArrayList<MenuItem> getAllItemOrders() {
+    /**
+     * Gets all item orders.
+     *
+     * @return the all item orders
+     */
+public ArrayList<MenuItem> getAllItemOrders() {
         ArrayList<MenuItem> all = new ArrayList<>();
         all.addAll(this.orderItems);
         all.addAll(this.promotionalSets);
         return all;
     }
 
-    public void printInvoice(boolean isMember) {
+    /**
+     * Print invoice.
+     *
+     * @param isMember the is member
+     */
+public void printInvoice(boolean isMember) {
         ArrayList<MenuItem> all = this.getAllItemOrders();
         System.out.println("--------------0xCAFEBABE  Cafe--------------");
         System.out.println("            21 Lien Ying Chow Dr            ");

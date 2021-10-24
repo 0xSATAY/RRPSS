@@ -38,15 +38,15 @@ $ cd RRPSS
 - [x] Add basic menu as text file
 - [x] Read menu from text file
 - [x] Complete functional requirement 1
-- [ ] Complete functional requirement 2
+- [x] Complete functional requirement 2
 - [x] Complete functional requirement 3
 - [x] Complete functional requirement 4
-- [ ] Complete functional requirement 5
-- [ ] Complete functional requirement 6
-- [ ] Complete functional requirement 7
-- [ ] Complete functional requirement 8
-- [ ] Complete functional requirement 9
-- [ ] Complete functional requirement 10
+- [x] Complete functional requirement 5
+- [x] Complete functional requirement 6
+- [x] Complete functional requirement 7
+- [x] Complete functional requirement 8
+- [x] Complete functional requirement 9
+- [?] Complete functional requirement 10
 - [ ] Refactor and modularize codebase further
 - [ ] Generate Javadocs
 - [ ] Create UML Class Diagrams using [PlantUML](https://plantuml.com/)

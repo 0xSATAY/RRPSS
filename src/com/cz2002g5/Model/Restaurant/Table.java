@@ -4,40 +4,91 @@ import com.cz2002g5.Model.Reservation.Reservation;
 
 import java.util.ArrayList;
 
+/**
+ * The type Table.
+ */
 public class Table {
-    Integer id, seatingCapacity;
-    ArrayList<Reservation> reservations = new ArrayList<>();
-    Boolean occupied = false;
+    /**
+     * The Id.
+     */
+Integer id, /**
+     * The Seating capacity.
+     */
+seatingCapacity;
+    /**
+     * The Reservations.
+     */
+ArrayList<Reservation> reservations = new ArrayList<>();
+    /**
+     * The Occupied.
+     */
+Boolean occupied = false;
 
 
 
-    public Table(Integer id, Integer seatingCapacity) {
+    /**
+     * Instantiates a new Table.
+     *
+     * @param id the id
+     * @param seatingCapacity the seating capacity
+     */
+public Table(Integer id, Integer seatingCapacity) {
         this.id = id;
         this.seatingCapacity = seatingCapacity;
     }
 
-    public Integer getTableID() {
+    /**
+     * Gets table id.
+     *
+     * @return the table id
+     */
+public Integer getTableID() {
         return this.id;
     }
 
 
-    public ArrayList<Reservation> getReservations() {
+    /**
+     * Gets reservations.
+     *
+     * @return the reservations
+     */
+public ArrayList<Reservation> getReservations() {
         return this.reservations;
     }
 
-    public void addReservation(Reservation reservation) {
+    /**
+     * Add reservation.
+     *
+     * @param reservation the reservation
+     */
+public void addReservation(Reservation reservation) {
         this.reservations.add(reservation);
     }
 
-    public Integer getSeatingCapacity() {
+    /**
+     * Gets seating capacity.
+     *
+     * @return the seating capacity
+     */
+public Integer getSeatingCapacity() {
         return this.seatingCapacity;
     }
 
-    public Boolean isOccupied() {
+    /**
+     * Is occupied boolean.
+     *
+     * @return the boolean
+     */
+public Boolean isOccupied() {
         return occupied;
     }
 
-    public void setOccupied(Boolean occupied) {
+    /**
+     * Sets occupied.
+     *
+     * @param occupied the occupied
+     */
+public void setOccupied(Boolean occupied) {
         this.occupied = occupied;
     }
 }
