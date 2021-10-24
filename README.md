@@ -51,7 +51,7 @@ $ cd RRPSS
 - [x] Complete functional requirement 7
 - [x] Complete functional requirement 8
 - [x] Complete functional requirement 9
-- [?] Complete functional requirement 10
+- [x] Complete functional requirement 10
 - [ ] Refactor and modularize codebase further
 - [ ] Generate Javadocs
 - [ ] Create UML Class Diagrams using [PlantUML](https://plantuml.com/)
