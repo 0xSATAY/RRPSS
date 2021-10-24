@@ -1,4 +1,5 @@
 # Restaurant Reservation and Point of Sale System (RRPSS)
+
 CZ2002 Group Project AY2021-2022 SEM 1
 
 ## Table of Contents
@@ -11,6 +12,7 @@ CZ2002 Group Project AY2021-2022 SEM 1
 ## About the Project
 
 <b>The main objective of this assignment is</b>
+
 - to apply the Object-Oriented (OO) concepts we have learnt in the course,
 - to model, design and develop an OO application.
 - to gain familiarity with using Java as an object-oriented programming language.
@@ -21,10 +23,12 @@ CZ2002 Group Project AY2021-2022 SEM 1
 ## Getting Started
 
 1. Download or clone the project:
+
 ```
 $ git clone https://github.com/wdwdwdwdwdwdwd/RRPSS.git
 $ cd RRPSS
 ```
+
 2. Open the project in [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) \(It's free!\)
 
 3. Compile and run the program.
@@ -34,6 +38,7 @@ $ cd RRPSS
 * TBD
 
 ## TODO
+
 - [x] Implement base model classes
 - [x] Add basic menu as text file
 - [x] Read menu from text file

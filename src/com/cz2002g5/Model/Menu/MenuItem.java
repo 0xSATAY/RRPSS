@@ -1,120 +1,58 @@
 package com.cz2002g5.Model.Menu;
 
-/**
- * The type Menu item.
- */
 public class MenuItem {
-    private String name;
-    private final String description;
-    private final ItemType type;
-    private Double price;
-    private int promotionID;
+  private String name;
+  private final String description;
+  private final ItemType type;
+  private Double price;
+  private int promotionID;
+  private int itemID;
 
-    /**
-     * Gets item id.
-     *
-     * @return the item id
-     */
-public int getItemID() {
-        return itemID;
-    }
+  public int getItemID() {
+    return itemID;
+  }
 
-    /**
-     * Sets item id.
-     *
-     * @param itemID the item id
-     */
-public void setItemID(int itemID) {
-        this.itemID = itemID;
-    }
+  public void setItemID(int itemID) {
+    this.itemID = itemID;
+  }
 
-    private int itemID;
+  public MenuItem(String name, ItemType type, String description, Double price) {
+    this.name = name;
+    this.description = description;
+    this.price = price;
+    this.type = type;
+    this.promotionID = -1;
+  }
 
-    /**
-     * Instantiates a new Menu item.
-     *
-     * @param name the name
-     * @param type the type
-     * @param description the description
-     * @param price the price
-     */
-public MenuItem(String name, ItemType type, String description, Double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.type = type;
-        this.promotionID = -1;
-    }
+  public String getName() {
+    return this.name;
+  }
 
-    /**
-     * Gets name.
-     *
-     * @return the name
-     */
-public String getName() {
-        return this.name;
-    }
+  public String getDescription() {
+    return this.description;
+  }
 
-    /**
-     * Gets description.
-     *
-     * @return the description
-     */
-public String getDescription() {
-        return this.description;
-    }
+  public Double getPrice() {
+    return this.price;
+  }
 
-    /**
-     * Gets price.
-     *
-     * @return the price
-     */
-public Double getPrice() {
-        return this.price;
-    }
+  public ItemType getType() {
+    return this.type;
+  }
 
-    /**
-     * Gets type.
-     *
-     * @return the type
-     */
-public ItemType getType() {
-        return this.type;
-    }
+  public void setPrice(Double newPrice) {
+    this.price = newPrice;
+  }
 
-    /**
-     * Sets price.
-     *
-     * @param newPrice the new price
-     */
-public void setPrice(Double newPrice) {
-        this.price = newPrice;
-    }
+  public int getPromotionID() {
+    return this.promotionID;
+  }
 
-    /**
-     * Gets promotion id.
-     *
-     * @return the promotion id
-     */
-public int getPromotionID() {
-        return this.promotionID;
-    }
+  public void setPromotionID(int id) {
+    this.promotionID = id;
+  }
 
-    /**
-     * Sets promotion id.
-     *
-     * @param id the id
-     */
-public void setPromotionID(int id) {
-        this.promotionID = id;
-    }
-
-    /**
-     * Sets name.
-     *
-     * @param name the name
-     */
-public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 }
