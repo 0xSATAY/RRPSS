@@ -60,7 +60,7 @@ public class RevenueReportController {
     ArrayList<String> orderItems = new ArrayList<>();
     for (MenuItem mi : order.getAllItemOrders()) {
       String generatedString =
-          date.toString() + ";" + mi.getName() + ";" + mi.getPrice().toString();
+          date.toString() + ";" + mi.getName() + ";" + mi.getPrice().toString() + ";" + mi.getType().toString();
       orderItems.add(generatedString);
     }
     CSVFileUtil.addOrderItemsToRevenueReportCSV(orderItems);
