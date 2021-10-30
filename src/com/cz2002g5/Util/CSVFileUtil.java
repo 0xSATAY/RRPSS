@@ -231,7 +231,7 @@ public class CSVFileUtil {
         setItems.append(",");
       }
       setItems = new StringBuilder(setItems.substring(0, setItems.length() - 1));
-      String promoString = item.getName() + ";" + item.getPrice() + ";" + setItems;
+      String promoString = item.getName() + ";" + item.getPrice() + ";" + setItems + "\n";
       BufferedWriter writer;
       writer = new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/promomenu.txt", true));
       writer.write(promoString);
