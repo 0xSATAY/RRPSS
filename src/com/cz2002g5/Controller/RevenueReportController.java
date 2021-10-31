@@ -1,6 +1,7 @@
 package com.cz2002g5.Controller;
 
 import com.cz2002g5.Model.Menu.MenuItem;
+import com.cz2002g5.Model.Menu.PromotionalSet;
 import com.cz2002g5.Model.Order.Order;
 import com.cz2002g5.Util.CSVFileUtil;
 
@@ -60,7 +61,10 @@ public class RevenueReportController {
     ArrayList<String> orderItems = new ArrayList<>();
     for (MenuItem mi : order.getAllItemOrders()) {
       String generatedString =
-          date.toString() + ";" + mi.getName() + ";" + mi.getPrice().toString() + ";" + mi.getType().toString();
+          date.toString() + ";" + mi.getName() + ";" + mi.getPrice().toString() + ";";
+      if (!(mi instanceof PromotionalSet)) {
+        generatedString += mi.getType();
+      }
       orderItems.add(generatedString);
     }
     CSVFileUtil.addOrderItemsToRevenueReportCSV(orderItems);

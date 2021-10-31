@@ -152,6 +152,11 @@ public class RRPSS {
           this.view = new WelcomeView();
           getCurrentView(this).display();
           break;
+        case 11:
+          mic = new MenuItemController();
+          mic.showAllMenuItems(this);
+          this.view = new WelcomeView();
+          getCurrentView(this).display();
         default:
           System.out.println("You have selected an invalid option!");
       }
@@ -179,16 +184,25 @@ public class RRPSS {
     this.promotionalSets.add(pi);
   }
 
-  public String generatePromoMenuString() {
+  public String generatePromoMenuString(boolean withDesc) {
     StringBuilder promoString = new StringBuilder();
     ArrayList<PromotionalSet> promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
     if (promotionalSets != null) {
       for (int i = 0; i < promotionalSets.size(); i++) {
+        String itemString = "";
+        if (withDesc) {
+          ArrayList<PromotionalSet> setItemes = new ArrayList<>();
+          for (MenuItem item : promotionalSets.get(i).getSetItems()) {
+            itemString += item.getName() + ",";
+          }
+          itemString = itemString.substring(0,itemString.length()-1);
+        }
         promoString
             .append(i + 1)
             .append(". ")
             .append(promotionalSets.get(i).getName())
             .append(" - ")
+            .append(withDesc ? itemString + " - " : "")
             .append(NumberFormat.getCurrencyInstance().format(promotionalSets.get(i).getPrice()))
             .append("\n");
       }
@@ -196,7 +210,7 @@ public class RRPSS {
     return promoString.toString();
   }
 
-  public String generateMenuString() {
+  public String generateMenuString(boolean withDesc) {
     ArrayList<MenuItem> menu;
     StringBuilder menuString = new StringBuilder();
     menu = CSVFileUtil.generateMenuItemListFromFile();
@@ -207,6 +221,7 @@ public class RRPSS {
             .append(". ")
             .append(menu.get(i).getName())
             .append(" - ")
+            .append(withDesc ? menu.get(i).getDescription() + " - " : "")
             .append(NumberFormat.getCurrencyInstance().format(menu.get(i).getPrice()))
             .append("\n");
       }

@@ -93,7 +93,7 @@ public class Order {
     System.out.println("            21 Lien Ying Chow Dr            ");
     System.out.println("                   #01-01                   ");
     System.out.println("--------------------------------------------");
-    System.out.printf("Table: %01d\n", this.tableNumber + 1);
+    System.out.printf("Table: %01d\n", this.tableNumber);
     System.out.printf("Date: %s\n", LocalDate.now());
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
     System.out.printf("Time: %s\n", LocalTime.now().format(dtf));

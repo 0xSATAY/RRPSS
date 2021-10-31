@@ -48,7 +48,7 @@ public class PromotionEditController implements MenuEditController {
     ((CreatePromoSetView) RRPSS.getCurrentView(pos)).showAddNameView();
     String name = sc.nextLine();
     PromotionalSet promotionalSet = new PromotionalSet(name);
-    System.out.println(pos.generateMenuString());
+    System.out.println(pos.generateMenuString(false));
     ((CreatePromoSetView) RRPSS.getCurrentView(pos)).showAddItemView();
     int itemSelection = sc.nextInt();
     while (true) {
@@ -100,7 +100,7 @@ public class PromotionEditController implements MenuEditController {
   public void updateItem(RRPSS pos) {
     while (true) {
       RRPSS.updateView(pos, new UpdatePromoItemView());
-      RRPSS.showView(pos, pos.generatePromoMenuString());
+      RRPSS.showView(pos, pos.generatePromoMenuString(false));
       Scanner sc = new Scanner(System.in);
       while (!sc.hasNextInt()) {
         System.out.println("You have inputted a non-numerical value!\nSelect your action:");
@@ -146,7 +146,7 @@ public class PromotionEditController implements MenuEditController {
       Scanner sc = new Scanner(System.in);
       RRPSS.updateView(pos, new DeletePromoItemView());
       RRPSS.showView(pos);
-      RRPSS.getCurrentView(pos).displayCustomView(pos.generatePromoMenuString());
+      RRPSS.getCurrentView(pos).displayCustomView(pos.generatePromoMenuString(false));
       while (!sc.hasNextInt()) {
         System.out.println("You have inputted a non-numerical value!");
         System.out.println("Select the item you wish to delete:");

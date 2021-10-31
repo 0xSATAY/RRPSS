@@ -4,10 +4,7 @@ import com.cz2002g5.Model.Menu.ItemType;
 import com.cz2002g5.Model.Menu.Menu;
 import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Util.CSVFileUtil;
-import com.cz2002g5.View.CreateMenuItemView;
-import com.cz2002g5.View.DeleteMenuItemView;
-import com.cz2002g5.View.ItemEditorView;
-import com.cz2002g5.View.UpdateMenuItemView;
+import com.cz2002g5.View.*;
 
 import java.util.Scanner;
 
@@ -86,7 +83,7 @@ public class MenuItemController implements MenuEditController {
     while (true) {
       Scanner sc = new Scanner(System.in);
       RRPSS.updateView(pos, new UpdateMenuItemView());
-      RRPSS.showView(pos, pos.generateMenuString());
+      RRPSS.showView(pos, pos.generateMenuString(false));
       while (!sc.hasNextInt()) {
         System.out.println("You have inputted a non-numerical value!\nSelect your action:");
         sc.next();
@@ -157,7 +154,7 @@ public class MenuItemController implements MenuEditController {
       Scanner sc = new Scanner(System.in);
       RRPSS.updateView(pos, new DeleteMenuItemView());
       RRPSS.showView(pos);
-      ((DeleteMenuItemView) RRPSS.getCurrentView(pos)).showDeleteItemView(pos.generateMenuString());
+      ((DeleteMenuItemView) RRPSS.getCurrentView(pos)).showDeleteItemView(pos.generateMenuString(false));
       while (!sc.hasNextInt()) {
         System.out.println("You have inputted a non-numerical value!");
         System.out.println("Select the item you wish to delete:");
@@ -177,5 +174,14 @@ public class MenuItemController implements MenuEditController {
         System.out.println("You have entered and invalid option!");
       }
     }
+  }
+
+  public void showAllMenuItems(RRPSS pos) {
+    MenuItemsView miv = new MenuItemsView();
+    RRPSS.updateView(pos, miv);
+    System.out.println("Ala Carte Items:");
+    RRPSS.getCurrentView(pos).displayCustomView(pos.generateMenuString(true));
+    System.out.println("Promo Sets");
+    RRPSS.getCurrentView(pos).displayCustomView(pos.generatePromoMenuString(true));
   }
 }

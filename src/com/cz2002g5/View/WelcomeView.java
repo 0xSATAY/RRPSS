@@ -15,7 +15,8 @@ public class WelcomeView implements View {
             + "7. Check/Remove reservation booking\n"
             + "8. Check table availability\n"
             + "9. Print order invoice\n"
-            + "10. Print sale revenue report by period");
+            + "10. Print sale revenue report by period\n"
+            + "11. Print all menu items");
   }
 
   @Override
