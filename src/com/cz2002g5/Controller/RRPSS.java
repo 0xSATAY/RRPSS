@@ -32,9 +32,27 @@ public class RRPSS {
     this.restaurant = new Restaurant();
     this.menu = new Menu(CSVFileUtil.generateMenuItemListFromFile());
     this.promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
+    this.initBackgroundReservationsChecker();
+  }
+
+  private void initBackgroundReservationsChecker() {
     Runnable checkReservationRunnable = this::clearReservations;
     ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
     exec.scheduleAtFixedRate(checkReservationRunnable , 0, 1, TimeUnit.MINUTES);
+  }
+
+  private void clearReservations() {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    for (Table t : this.restaurant.getTables()) {
+      for (Reservation r : t.getReservations()) {
+        String dateTimeString = r.getDate().toString() + " " + r.getTime().toString();
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, dtf);
+        long minutes = ChronoUnit.MINUTES.between(dateTime, LocalDateTime.now());
+        if (minutes > 15) {
+          t.getReservations().remove(r);
+        }
+      }
+    }
   }
 
   public static void updateView(RRPSS pos, View view) {
@@ -61,19 +79,7 @@ public class RRPSS {
     return pos.promotionalSets;
   }
 
-  private void clearReservations() {
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    for (Table t : this.restaurant.getTables()) {
-      for (Reservation r : t.getReservations()) {
-        String dateTimeString = r.getDate().toString() + " " + r.getTime().toString();
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, dtf);
-        long minutes = ChronoUnit.MINUTES.between(dateTime, LocalDateTime.now());
-        if (minutes > 15) {
-          t.getReservations().remove(r);
-        }
-      }
-    }
-  }
+
   public void run() {
     while (true) {
       RRPSS.updateView(this, new WelcomeView());

@@ -18,8 +18,6 @@ CZ2002 Group Project AY2021-2022 SEM 1
 - to gain familiarity with using Java as an object-oriented programming language.
 - to work collaboratively as a group to achieve a common goal.
 
-![Unfinished UML Class Diagram](RRPSS.plantuml-__RRPSS_s_Class_Diagram____.png)
-
 ## Getting Started
 
 1. Download or clone the project:
