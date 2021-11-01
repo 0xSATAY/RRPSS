@@ -55,8 +55,74 @@ public class RRPSS {
     }
   }
 
+  private void selectMainViewOption() {
+    while (true) {
+      returnToWelcomeView();
+      System.out.println("Select an option:");
+      Scanner sc = new Scanner(System.in);
+      while (!sc.hasNextInt()) {
+        System.out.println("You have inputted a non-numerical value!\nSelect an option:");
+        sc.next();
+      }
+      int input = sc.nextInt();
+      switch (input) {
+        case 1:
+          MenuItemController mic = new MenuItemController();
+          mic.selectAction(this);
+          break;
+        case 2:
+          PromotionEditController pec = new PromotionEditController();
+          pec.selectAction(this);
+          break;
+        case 3:
+          OrderController oc = new OrderController();
+          oc.createOrder(this);
+          break;
+        case 4:
+          oc = new OrderController();
+          oc.viewAllOrders(this);
+          break;
+        case 5:
+          oc = new OrderController();
+          oc.selectAction(this);
+          break;
+        case 6:
+          ReservationController rc = new ReservationController();
+          rc.createReservation(this);
+          break;
+        case 7:
+          rc = new ReservationController();
+          rc.selectAction(this);
+          break;
+        case 8:
+          rc = new ReservationController();
+          rc.checkAvailability(this);
+          break;
+        case 9:
+          oc = new OrderController();
+          oc.generateInvoice(this);
+          break;
+        case 10:
+          RevenueReportController rrc = new RevenueReportController();
+          rrc.generateRevenueReport();
+          break;
+        case 11:
+          mic = new MenuItemController();
+          mic.showAllMenuItems(this);
+          break;
+        default:
+          System.out.println("You have selected an invalid option!");
+      }
+    }
+  }
+
   public static void updateView(RRPSS pos, View view) {
     pos.view = view;
+  }
+
+  private void returnToWelcomeView() {
+    this.view = new WelcomeView();
+    getCurrentView(this).display();
   }
 
   public static void showView(RRPSS pos) {
@@ -82,90 +148,7 @@ public class RRPSS {
 
   public void run() {
     while (true) {
-      RRPSS.updateView(this, new WelcomeView());
-      getCurrentView(this).display();
       this.selectMainViewOption();
-    }
-  }
-
-  private void selectMainViewOption() {
-    while (true) {
-      System.out.println("Select an option:");
-      Scanner sc = new Scanner(System.in);
-      while (!sc.hasNextInt()) {
-        System.out.println("You have inputted a non-numerical value!\nSelect an option:");
-        sc.next();
-      }
-      int input = sc.nextInt();
-      switch (input) {
-        case 1:
-          MenuItemController mic = new MenuItemController();
-          mic.selectAction(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 2:
-          PromotionEditController pec = new PromotionEditController();
-          pec.selectAction(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 3:
-          OrderController oc = new OrderController();
-          oc.createOrder(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 4:
-          oc = new OrderController();
-          oc.viewAllOrders(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 5:
-          oc = new OrderController();
-          oc.selectAction(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 6:
-          ReservationController rc = new ReservationController();
-          rc.createReservation(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 7:
-          rc = new ReservationController();
-          rc.selectAction(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 8:
-          rc = new ReservationController();
-          rc.checkAvailability(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 9:
-          oc = new OrderController();
-          oc.generateInvoice(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 10:
-          RevenueReportController rrc = new RevenueReportController();
-          rrc.generateRevenueReport();
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-          break;
-        case 11:
-          mic = new MenuItemController();
-          mic.showAllMenuItems(this);
-          this.view = new WelcomeView();
-          getCurrentView(this).display();
-        default:
-          System.out.println("You have selected an invalid option!");
-      }
     }
   }
 
