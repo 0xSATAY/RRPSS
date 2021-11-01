@@ -4,56 +4,41 @@ import com.cz2002g5.Model.Menu.Menu;
 import com.cz2002g5.Model.Menu.MenuItem;
 import com.cz2002g5.Model.Menu.PromotionalSet;
 import com.cz2002g5.Model.Order.Order;
-import com.cz2002g5.Model.Reservation.Reservation;
 import com.cz2002g5.Model.Restaurant.Restaurant;
-import com.cz2002g5.Model.Restaurant.Table;
 import com.cz2002g5.Util.CSVFileUtil;
 import com.cz2002g5.View.View;
 import com.cz2002g5.View.WelcomeView;
 
 import java.text.NumberFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class RRPSS {
+public class RRPSS implements Runnable{
   private final Restaurant restaurant;
   private final ArrayList<Order> orders = new ArrayList<>();
   private final Menu menu;
   private ArrayList<PromotionalSet> promotionalSets;
   private View view;
+  private MenuItemController mic;
+  private PromotionEditController pec;
+  private OrderController oc;
+  private ReservationController rc;
+  private RevenueReportController rrc;
 
   public RRPSS() {
     this.restaurant = new Restaurant();
     this.menu = new Menu(CSVFileUtil.generateMenuItemListFromFile());
     this.promotionalSets = CSVFileUtil.generatePromoMenuItemListFromFile();
-    this.initBackgroundReservationsChecker();
+    this.mic = new MenuItemController();
+    this.pec = new PromotionEditController();
+    this.oc = new OrderController();
+    this.rc = new ReservationController(this);
+    this.rrc = new RevenueReportController();
   }
 
-  private void initBackgroundReservationsChecker() {
-    Runnable checkReservationRunnable = this::clearReservations;
-    ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
-    exec.scheduleAtFixedRate(checkReservationRunnable , 0, 1, TimeUnit.MINUTES);
-  }
-
-  private void clearReservations() {
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    for (Table t : this.restaurant.getTables()) {
-      for (Reservation r : t.getReservations()) {
-        String dateTimeString = r.getDate().toString() + " " + r.getTime().toString();
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, dtf);
-        long minutes = ChronoUnit.MINUTES.between(dateTime, LocalDateTime.now());
-        if (minutes > 15) {
-          t.getReservations().remove(r);
-        }
-      }
-    }
-  }
 
   private void selectMainViewOption() {
     while (true) {
@@ -67,47 +52,36 @@ public class RRPSS {
       int input = sc.nextInt();
       switch (input) {
         case 1:
-          MenuItemController mic = new MenuItemController();
           mic.selectAction(this);
           break;
         case 2:
-          PromotionEditController pec = new PromotionEditController();
           pec.selectAction(this);
           break;
         case 3:
-          OrderController oc = new OrderController();
           oc.createOrder(this);
           break;
         case 4:
-          oc = new OrderController();
           oc.viewAllOrders(this);
           break;
         case 5:
-          oc = new OrderController();
           oc.selectAction(this);
           break;
         case 6:
-          ReservationController rc = new ReservationController();
           rc.createReservation(this);
           break;
         case 7:
-          rc = new ReservationController();
           rc.selectAction(this);
           break;
         case 8:
-          rc = new ReservationController();
           rc.checkAvailability(this);
           break;
         case 9:
-          oc = new OrderController();
           oc.generateInvoice(this);
           break;
         case 10:
-          RevenueReportController rrc = new RevenueReportController();
           rrc.generateRevenueReport();
           break;
         case 11:
-          mic = new MenuItemController();
           mic.showAllMenuItems(this);
           break;
         default:

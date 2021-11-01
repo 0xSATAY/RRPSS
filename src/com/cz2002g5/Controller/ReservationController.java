@@ -1,6 +1,7 @@
 package com.cz2002g5.Controller;
 
 import com.cz2002g5.Model.Reservation.Reservation;
+import com.cz2002g5.Model.Restaurant.Table;
 import com.cz2002g5.View.CreateReservationView;
 import com.cz2002g5.View.DeleteReservationView;
 import com.cz2002g5.View.ReservationEditorView;
@@ -9,16 +10,24 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class ReservationController {
 
-  public static String[] timings = {
-    "11:00AM", "11:30AM", "12:00PM", "12:30PM", "01:00PM", "01:30PM", "06:00PM", "06:30PM",
-    "07:00PM", "07:30PM", "08:00PM", "08:30PM"
+  public static final String[] timings = {
+          "11:00AM", "11:30AM", "12:00PM", "12:30PM", "01:00PM", "01:30PM", "06:00PM", "06:30PM",
+          "07:00PM", "07:30PM", "08:00PM", "08:30PM"
   };
+
+  public ReservationController(RRPSS pos) {
+    this.initBackgroundReservationsChecker(pos);
+  }
 
   public void selectAction(RRPSS pos) {
     while (true) {
@@ -223,6 +232,28 @@ public class ReservationController {
       System.out.println("Table not available for the specified date and time!\n");
     } else {
       System.out.println("Table available!\n");
+    }
+  }
+
+  private void initBackgroundReservationsChecker(RRPSS pos) {
+    Runnable checkReservationRunnable = () -> {
+      this.clearReservations(pos);
+    };
+    ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+    exec.scheduleAtFixedRate(checkReservationRunnable , 0, 1, TimeUnit.MINUTES);
+  }
+
+  public void clearReservations(RRPSS pos) {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    for (Table t : pos.getRestaurant().getTables()) {
+      for (Reservation r : t.getReservations()) {
+        String dateTimeString = r.getDate().toString() + " " + r.getTime().toString();
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, dtf);
+        long minutes = ChronoUnit.MINUTES.between(dateTime, LocalDateTime.now());
+        if (minutes > 15) {
+          t.getReservations().remove(r);
+        }
+      }
     }
   }
 }
