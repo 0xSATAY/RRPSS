@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ReservationController {
@@ -117,7 +118,7 @@ public class ReservationController {
       System.out.println("You have selected an invalid option!");
       return;
     }
-    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma");
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma",Locale.ENGLISH);
     LocalTime time = LocalTime.parse(timings[selectedTiming], timeFormatter);
     crv.showAddContactNumberView();
     String contactNumber = sc.next();
@@ -200,7 +201,7 @@ public class ReservationController {
       System.out.println("You have selected an invalid option!");
       return;
     }
-    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma");
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma", Locale.ENGLISH);
     LocalTime time = LocalTime.parse(timings[selectedTiming], timeFormatter);
     crv.showAddPaxView();
     while (!sc.hasNextInt()) {
