@@ -236,24 +236,25 @@ public class ReservationController {
   }
 
   private void initBackgroundReservationsChecker(RRPSS pos) {
-    Runnable checkReservationRunnable = () -> {
-      this.clearReservations(pos);
-    };
+    Runnable checkReservationRunnable = () -> this.clearReservations(pos);
     ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
     exec.scheduleAtFixedRate(checkReservationRunnable , 0, 1, TimeUnit.MINUTES);
   }
 
-  public void clearReservations(RRPSS pos) {
+  public int clearReservations(RRPSS pos) {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    int removedReservationsCount = 0;
     for (Table t : pos.getRestaurant().getTables()) {
       for (Reservation r : t.getReservations()) {
         String dateTimeString = r.getDate().toString() + " " + r.getTime().toString();
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, dtf);
         long minutes = ChronoUnit.MINUTES.between(dateTime, LocalDateTime.now());
         if (minutes > 15) {
+          removedReservationsCount++;
           t.getReservations().remove(r);
         }
       }
     }
+    return removedReservationsCount;
   }
 }
