@@ -7,7 +7,9 @@ public class DeleteMenuItemView implements View {
   }
 
   @Override
-  public void displayCustomView(String s) {}
+  public void displayCustomView(String s) {
+    System.out.println(s);
+  }
 
   public void showDeleteItemView(String menu) {
     System.out.println(menu);

@@ -7,7 +7,9 @@ public class CreatePromoSetView implements View {
   }
 
   @Override
-  public void displayCustomView(String s) {}
+  public void displayCustomView(String s) {
+    System.out.println(s);
+  }
 
   public void showAddItemView() {
     System.out.println("Select item to be added into the promo set. To cancel enter 0:");

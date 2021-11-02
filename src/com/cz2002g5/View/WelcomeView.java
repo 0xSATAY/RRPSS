@@ -20,5 +20,7 @@ public class WelcomeView implements View {
   }
 
   @Override
-  public void displayCustomView(String s) {}
+  public void displayCustomView(String s) {
+    System.out.println(s);
+  }
 }

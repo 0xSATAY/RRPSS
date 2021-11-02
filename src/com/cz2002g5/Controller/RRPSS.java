@@ -12,9 +12,6 @@ import com.cz2002g5.View.WelcomeView;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class RRPSS implements Runnable{
   private final Restaurant restaurant;

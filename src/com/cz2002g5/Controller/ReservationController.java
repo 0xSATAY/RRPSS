@@ -42,10 +42,10 @@ public class ReservationController {
       int selection = sc.nextInt();
       switch (selection) {
         case 1:
-          showAllReservations(pos);
+          this.showAllReservations(pos);
           break;
         case 2:
-          removeReservation(pos);
+          this.removeReservation(pos);
           break;
         case 3:
           return;
