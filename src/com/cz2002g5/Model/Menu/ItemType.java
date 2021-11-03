@@ -1,9 +1,21 @@
 package com.cz2002g5.Model.Menu;
 
+/**
+ * Enum for the type of every menu item.
+ */
 public enum ItemType {
-  MAINS,
+  /**
+   *Mains item type.
+   */
+MAINS,
 
-  DRINKS,
+  /**
+   *Drinks item type.
+   */
+DRINKS,
 
-  DESSERT
+  /**
+   *Dessert item type.
+   */
+DESSERT
 }

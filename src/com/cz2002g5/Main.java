@@ -2,9 +2,17 @@ package com.cz2002g5;
 
 import com.cz2002g5.Controller.RRPSS;
 
+/**
+ * The type Main.
+ */
 public class Main {
 
-  public static void main(String[] args) {
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+public static void main(String[] args) {
     RRPSS pos = new RRPSS();
     pos.run();
   }

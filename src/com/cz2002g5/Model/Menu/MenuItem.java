@@ -1,5 +1,8 @@
 package com.cz2002g5.Model.Menu;
 
+/**
+ * The MenuItem model
+ */
 public class MenuItem {
   private String name;
   private final String description;
@@ -8,15 +11,33 @@ public class MenuItem {
   private int promotionID;
   private int itemID;
 
-  public int getItemID() {
+  /**
+   * Gets item id.
+   *
+   * @return the item id
+   */
+public int getItemID() {
     return itemID;
   }
 
-  public void setItemID(int itemID) {
+  /**
+   * Sets item id.
+   *
+   * @param itemID the item id
+   */
+public void setItemID(int itemID) {
     this.itemID = itemID;
   }
 
-  public MenuItem(String name, ItemType type, String description, Double price) {
+  /**
+   * Instantiates a new Menu item.
+   *
+   * @param name the name
+   * @param type the type
+   * @param description the description
+   * @param price the price
+   */
+public MenuItem(String name, ItemType type, String description, Double price) {
     this.name = name;
     this.description = description;
     this.price = price;
@@ -24,35 +45,75 @@ public class MenuItem {
     this.promotionID = -1;
   }
 
-  public String getName() {
+  /**
+   * Gets name.
+   *
+   * @return the name
+   */
+public String getName() {
     return this.name;
   }
 
-  public String getDescription() {
+  /**
+   * Gets description.
+   *
+   * @return the description
+   */
+public String getDescription() {
     return this.description;
   }
 
-  public Double getPrice() {
+  /**
+   * Gets price.
+   *
+   * @return the price
+   */
+public Double getPrice() {
     return this.price;
   }
 
-  public ItemType getType() {
+  /**
+   * Gets type.
+   *
+   * @return the type
+   */
+public ItemType getType() {
     return this.type;
   }
 
-  public void setPrice(Double newPrice) {
+  /**
+   * Sets price.
+   *
+   * @param newPrice the new price
+   */
+public void setPrice(Double newPrice) {
     this.price = newPrice;
   }
 
-  public int getPromotionID() {
+  /**
+   * Gets promotion id.
+   *
+   * @return the promotion id
+   */
+public int getPromotionID() {
     return this.promotionID;
   }
 
-  public void setPromotionID(int id) {
+  /**
+   * Sets promotion id.
+   *
+   * @param id the id
+   */
+public void setPromotionID(int id) {
     this.promotionID = id;
   }
 
-  public void setName(String name) {
+  /**
+   * Sets name.
+   *
+   * @param name the name
+   */
+public void setName(String name) {
     this.name = name;
   }
 }

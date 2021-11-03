@@ -8,6 +8,7 @@ import com.cz2002g5.View.*;
 
 import java.util.Scanner;
 
+/** The controller class for creating, deleting and updating menu items. */
 public class MenuItemController implements MenuEditController {
 
   @Override
@@ -154,7 +155,8 @@ public class MenuItemController implements MenuEditController {
       Scanner sc = new Scanner(System.in);
       RRPSS.updateView(pos, new DeleteMenuItemView());
       RRPSS.showView(pos);
-      ((DeleteMenuItemView) RRPSS.getCurrentView(pos)).showDeleteItemView(pos.generateMenuString(false));
+      ((DeleteMenuItemView) RRPSS.getCurrentView(pos))
+          .showDeleteItemView(pos.generateMenuString(false));
       while (!sc.hasNextInt()) {
         System.out.println("You have inputted a non-numerical value!");
         System.out.println("Select the item you wish to delete:");
@@ -176,6 +178,11 @@ public class MenuItemController implements MenuEditController {
     }
   }
 
+  /**
+   * This method displays all menu items (ala carte and promotional sets).
+   *
+   * @param pos Reference to the instance of RRPSS.
+   */
   public void showAllMenuItems(RRPSS pos) {
     MenuItemsView miv = new MenuItemsView();
     RRPSS.updateView(pos, miv);

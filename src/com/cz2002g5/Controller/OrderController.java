@@ -17,7 +17,13 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/** The controller class for all order related operations. */
 public class OrderController {
+  /**
+   * This method processes user actions.
+   *
+   * @param pos Reference to the instance of RRPSS.
+   */
   public void selectAction(RRPSS pos) {
     while (true) {
       Scanner sc = new Scanner(System.in);
@@ -41,6 +47,11 @@ public class OrderController {
     }
   }
 
+  /**
+   * This method displays all the existing orders to the view.
+   *
+   * @param pos Reference to the instance of RRPSS.
+   */
   public void viewAllOrders(RRPSS pos) {
     ArrayList<Order> orders = pos.getOrders();
     if (orders.size() == 0) {
@@ -65,6 +76,11 @@ public class OrderController {
     }
   }
 
+  /**
+   * This method creates a new order.
+   *
+   * @param pos Reference to the instance of RRPSS.
+   */
   public void createOrder(RRPSS pos) {
     Scanner sc = new Scanner(System.in);
     CreateOrderView cov = new CreateOrderView();
@@ -236,6 +252,11 @@ public class OrderController {
     }
   }
 
+  /**
+   * This method adds an item to an existing order.
+   *
+   * @param pos Reference to the instance of RRPSS.
+   */
   public void addItemToOrder(RRPSS pos) {
     Scanner sc = new Scanner(System.in);
     UpdateOrderItemView uoiv = new UpdateOrderItemView();
@@ -327,6 +348,11 @@ public class OrderController {
             + "\n");
   }
 
+  /**
+   * This method removes an item from an existing order.
+   *
+   * @param pos Reference to the instance of RRPSS.
+   */
   public void removeItemFromOrder(RRPSS pos) {
     Scanner sc = new Scanner(System.in);
     RemoveOrderItemView roiv = new RemoveOrderItemView();
@@ -425,6 +451,12 @@ public class OrderController {
             + "\n");
   }
 
+  /**
+   * This method generates the invoice when customer pays the bill. Customer's table is set free and
+   * all of the ordered items are added to the revenue report.
+   *
+   * @param pos Reference to the instance of RRPSS.
+   */
   public void generateInvoice(RRPSS pos) {
     Scanner sc = new Scanner(System.in);
     int counter = 1;

@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Create order view.
+ */
 public class CreateOrderView implements View {
   @Override
   public void display() {
@@ -12,19 +15,33 @@ public class CreateOrderView implements View {
     System.out.println("Select an item from the menu:");
   }
 
-  public void showMenu(String menuString) {
+  /**
+   * Show menu.
+   *
+   * @param menuString the menu string
+   */
+public void showMenu(String menuString) {
     this.displayCustomView(menuString);
   }
 
-  public void showEmployeeIDView() {
+  /**
+   * Show employee id view.
+   */
+public void showEmployeeIDView() {
     System.out.println("Enter your employee ID:");
   }
 
-  public void showTableNumberView() {
+  /**
+   * Show table number view.
+   */
+public void showTableNumberView() {
     System.out.println("Enter the table number:");
   }
 
-  public void showNumOfCustomersView() {
+  /**
+   * Show num of customers view.
+   */
+public void showNumOfCustomersView() {
     System.out.println("Enter the number of customers:");
   }
 }

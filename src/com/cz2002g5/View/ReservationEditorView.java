@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Reservation editor view.
+ */
 public class ReservationEditorView implements View {
   @Override
   public void display() {

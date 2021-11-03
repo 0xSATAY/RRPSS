@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Update promo item view.
+ */
 public class UpdatePromoItemView extends UpdateMenuItemView {
   @Override
   public void display() {

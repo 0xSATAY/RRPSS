@@ -10,9 +10,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * The type Csv file util.
+ */
 public class CSVFileUtil {
 
-  public static ArrayList<String> readFile(String filename) {
+  /**
+   * Read file array list.
+   *
+   * @param filename the filename
+   * @return the array list
+   */
+public static ArrayList<String> readFile(String filename) {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/" + filename));
@@ -28,7 +37,12 @@ public class CSVFileUtil {
     }
   }
 
-  public static ArrayList<MenuItem> generateMenuItemListFromFile() {
+  /**
+   * Generate menu item list from file array list.
+   *
+   * @return the array list
+   */
+public static ArrayList<MenuItem> generateMenuItemListFromFile() {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
@@ -48,7 +62,13 @@ public class CSVFileUtil {
     }
   }
 
-  public static MenuItem getItemByName(String name) {
+  /**
+   * Gets item by name.
+   *
+   * @param name the name
+   * @return the item by name
+   */
+public static MenuItem getItemByName(String name) {
     try {
       ArrayList<MenuItem> menuItems = generateMenuItemListFromFile();
       assert menuItems != null;
@@ -64,15 +84,30 @@ public class CSVFileUtil {
     }
   }
 
-  public static ArrayList<String> readMenuFile() {
+  /**
+   * Read menu file array list.
+   *
+   * @return the array list
+   */
+public static ArrayList<String> readMenuFile() {
     return readFile("menu.txt");
   }
 
-  public static ArrayList<String> readPromoMenuFile() {
+  /**
+   * Read promo menu file array list.
+   *
+   * @return the array list
+   */
+public static ArrayList<String> readPromoMenuFile() {
     return readFile("promomenu.txt");
   }
 
-  public static void addItemToMenu(MenuItem item) {
+  /**
+   * Add item to menu.
+   *
+   * @param item the item
+   */
+public static void addItemToMenu(MenuItem item) {
     try {
       String itemString =
           item.getName()
@@ -92,7 +127,13 @@ public class CSVFileUtil {
     }
   }
 
-  public static void updateMenuByIndex(int itemIndex, MenuItem item) {
+  /**
+   * Update menu by index.
+   *
+   * @param itemIndex the item index
+   * @param item the item
+   */
+public static void updateMenuByIndex(int itemIndex, MenuItem item) {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
@@ -125,7 +166,12 @@ public class CSVFileUtil {
     }
   }
 
-  public static void removeMenuItemByIndex(int index) {
+  /**
+   * Remove menu item by index.
+   *
+   * @param index the index
+   */
+public static void removeMenuItemByIndex(int index) {
     try {
       ArrayList<String> fileContent = readMenuFile();
       fileContent.remove(index);
@@ -144,7 +190,12 @@ public class CSVFileUtil {
     }
   }
 
-  public static ArrayList<PromotionalSet> generatePromoMenuItemListFromFile() {
+  /**
+   * Generate promo menu item list from file array list.
+   *
+   * @return the array list
+   */
+public static ArrayList<PromotionalSet> generatePromoMenuItemListFromFile() {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
@@ -172,7 +223,12 @@ public class CSVFileUtil {
     return null;
   }
 
-  public static void removePromoItemByIndex(int index) {
+  /**
+   * Remove promo item by index.
+   *
+   * @param index the index
+   */
+public static void removePromoItemByIndex(int index) {
     try {
       ArrayList<String> fileContent = readPromoMenuFile();
       fileContent.remove(index);
@@ -191,7 +247,13 @@ public class CSVFileUtil {
     }
   }
 
-  public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) {
+  /**
+   * Update promo menu by index.
+   *
+   * @param itemIndex the item index
+   * @param item the item
+   */
+public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) {
     try {
       BufferedReader csvReader;
       csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
@@ -223,7 +285,12 @@ public class CSVFileUtil {
     }
   }
 
-  public static void addItemToPromoMenu(PromotionalSet item) {
+  /**
+   * Add item to promo menu.
+   *
+   * @param item the item
+   */
+public static void addItemToPromoMenu(PromotionalSet item) {
     try {
       StringBuilder setItems = new StringBuilder();
       for (MenuItem mi : item.getSetItems()) {
@@ -241,7 +308,12 @@ public class CSVFileUtil {
     }
   }
 
-  public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems) {
+  /**
+   * Add order items to revenue report csv.
+   *
+   * @param orderItems the order items
+   */
+public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems) {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/revenuereport.txt"));
@@ -263,7 +335,12 @@ public class CSVFileUtil {
     }
   }
 
-  public static ArrayList<String> readRevenueReport() {
+  /**
+   * Read revenue report array list.
+   *
+   * @return the array list
+   */
+public static ArrayList<String> readRevenueReport() {
     return readFile("revenuereport.txt");
   }
 }

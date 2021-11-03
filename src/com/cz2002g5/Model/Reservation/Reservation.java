@@ -3,6 +3,9 @@ package com.cz2002g5.Model.Reservation;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * The type Reservation.
+ */
 public class Reservation {
   private LocalDate date;
   private LocalTime time;
@@ -10,7 +13,16 @@ public class Reservation {
   private int table;
   private String name, contactNumber;
 
-  public Reservation(
+  /**
+   * Instantiates a new Reservation.
+   *
+   * @param name the name
+   * @param contactNumber the contact number
+   * @param pax the pax
+   * @param date the date
+   * @param time the time
+   */
+public Reservation(
       String name, String contactNumber, Integer pax, LocalDate date, LocalTime time) {
     this.name = name;
     this.contactNumber = contactNumber;
@@ -19,51 +31,109 @@ public class Reservation {
     this.time = time;
   }
 
-  public String getName() {
+  /**
+   * Gets name.
+   *
+   * @return the name
+   */
+public String getName() {
     return this.name;
   }
 
-  public void setTable(int table) {
+  /**
+   * Sets table.
+   *
+   * @param table the table
+   */
+public void setTable(int table) {
     this.table = table;
   }
 
-  public String getContactNumber() {
+  /**
+   * Gets contact number.
+   *
+   * @return the contact number
+   */
+public String getContactNumber() {
     return this.contactNumber;
   }
 
-  public Integer getPax() {
+  /**
+   * Gets pax.
+   *
+   * @return the pax
+   */
+public Integer getPax() {
     return this.pax;
   }
 
-  public LocalDate getDate() {
+  /**
+   * Gets date.
+   *
+   * @return the date
+   */
+public LocalDate getDate() {
     return this.date;
   }
 
-  public void setName(String newName) {
+  /**
+   * Sets name.
+   *
+   * @param newName the new name
+   */
+public void setName(String newName) {
     this.name = newName;
   }
 
-  public void setContactNumber(String newContactNumber) {
+  /**
+   * Sets contact number.
+   *
+   * @param newContactNumber the new contact number
+   */
+public void setContactNumber(String newContactNumber) {
     this.contactNumber = newContactNumber;
   }
 
-  public void setPax(Integer newPax) {
+  /**
+   * Sets pax.
+   *
+   * @param newPax the new pax
+   */
+public void setPax(Integer newPax) {
     this.pax = newPax;
   }
 
-  public void setDate(LocalDate newDate) {
+  /**
+   * Sets date.
+   *
+   * @param newDate the new date
+   */
+public void setDate(LocalDate newDate) {
     this.date = newDate;
   }
 
-  public LocalTime getTime() {
+  /**
+   * Gets time.
+   *
+   * @return the time
+   */
+public LocalTime getTime() {
     return time;
   }
 
-  public void setTime(LocalTime time) {
+  /**
+   * Sets time.
+   *
+   * @param time the time
+   */
+public void setTime(LocalTime time) {
     this.time = time;
   }
 
-  public void showInfo() {
+  /**
+   * Show info.
+   */
+public void showInfo() {
     System.out.println(
         this.date
             + " "
@@ -76,7 +146,12 @@ public class Reservation {
             + this.pax);
   }
 
-  public int getTableNumber() {
+  /**
+   * Gets table number.
+   *
+   * @return the table number
+   */
+public int getTableNumber() {
     return this.table;
   }
 }

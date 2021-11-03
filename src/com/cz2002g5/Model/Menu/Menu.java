@@ -2,18 +2,36 @@ package com.cz2002g5.Model.Menu;
 
 import java.util.ArrayList;
 
+/**
+ * The Menu model that represents the entire menu of the restaurant.
+ */
 public class Menu {
   private ArrayList<MenuItem> menuItems;
 
-  public Menu(ArrayList<MenuItem> menuItems) {
+  /**
+   * Instantiates a new Menu.
+   *
+   * @param menuItems The menu items that are to be part of the menu.
+   */
+public Menu(ArrayList<MenuItem> menuItems) {
     this.menuItems = menuItems;
   }
 
-  public ArrayList<MenuItem> getMenuItems() {
+  /**
+   * This method retrieves the menu items of the menu.
+   *
+   * @return A list of all menu items from the menu.
+   */
+public ArrayList<MenuItem> getMenuItems() {
     return this.menuItems;
   }
 
-  public void setMenuItems(ArrayList<MenuItem> menuItems) {
+  /**
+   * This method updates the menu items of the menu.
+   *
+   * @param menuItems The updated menu items that will be replacing the current menu items.
+   */
+public void setMenuItems(ArrayList<MenuItem> menuItems) {
     this.menuItems = menuItems;
   }
 }

@@ -1,5 +1,8 @@
 package com.cz2002g5.View;
 
+/**
+ * The type Update order item view.
+ */
 public class UpdateOrderItemView implements View {
   @Override
   public void display() {

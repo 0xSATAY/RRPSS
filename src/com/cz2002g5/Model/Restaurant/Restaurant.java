@@ -4,24 +4,43 @@ import com.cz2002g5.Model.Reservation.Reservation;
 
 import java.util.ArrayList;
 
+/**
+ * The type Restaurant.
+ */
 public class Restaurant {
 
-  public static final Integer TOTAL_TABLES = 20;
+  /**
+   * The constant TOTAL_TABLES.
+   */
+public static final Integer TOTAL_TABLES = 20;
 
   private final ArrayList<Table> tables;
 
-  public Restaurant() {
+  /**
+   * Instantiates a new Restaurant.
+   */
+public Restaurant() {
     tables = new ArrayList<>();
     for (int i = 0; i < TOTAL_TABLES; i++) {
       this.tables.add(new Table(i, ((i + 4) / 4) * 2));
     }
   }
 
-  public ArrayList<Table> getTables() {
+  /**
+   * Gets tables.
+   *
+   * @return the tables
+   */
+public ArrayList<Table> getTables() {
     return this.tables;
   }
 
-  public ArrayList<Reservation> getReservations() {
+  /**
+   * Gets reservations.
+   *
+   * @return the reservations
+   */
+public ArrayList<Reservation> getReservations() {
     ArrayList<Reservation> reservations = new ArrayList<>();
     for (Table t : this.tables) {
       reservations.addAll(t.getReservations());
@@ -29,7 +48,14 @@ public class Restaurant {
     return reservations;
   }
 
-  public int assignTableForReservation(Reservation reservation, boolean checkAvail) {
+  /**
+   * Assign table for reservation int.
+   *
+   * @param reservation the reservation
+   * @param checkAvail the check avail
+   * @return the int
+   */
+public int assignTableForReservation(Reservation reservation, boolean checkAvail) {
     boolean reservationFound = false;
     for (int i = 0; i < this.tables.size(); i++) {
       if (this.tables.get(i).getSeatingCapacity()

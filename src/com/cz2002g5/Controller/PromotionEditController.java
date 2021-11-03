@@ -9,6 +9,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The controller class for creating, deleting and updating promotional sets.
+ */
 public class PromotionEditController implements MenuEditController {
 
   @Override
