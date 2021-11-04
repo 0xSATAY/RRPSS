@@ -1,8 +1,6 @@
 package com.cz2002g5.View;
 
-/**
- * The type Remove order item view.
- */
+/** Remove order item view. */
 public class RemoveOrderItemView implements View {
 
   @Override

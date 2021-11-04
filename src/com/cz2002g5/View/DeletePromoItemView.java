@@ -1,8 +1,6 @@
 package com.cz2002g5.View;
 
-/**
- * The type Delete promo item view.
- */
+/** The type Delete promo item view. */
 public class DeletePromoItemView implements View {
   @Override
   public void display() {

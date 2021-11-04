@@ -1,8 +1,6 @@
 package com.cz2002g5.View;
 
-/**
- * The type Order editor view.
- */
+/** Order editor view. */
 public class OrderEditorView implements View {
   @Override
   public void display() {

@@ -1,117 +1,97 @@
 package com.cz2002g5.Model.Menu;
 
 /**
- * The MenuItem model
+ * The MenuItem model for menu items.
  */
 public class MenuItem {
   private String name;
   private final String description;
   private final ItemType type;
   private Double price;
-  private int promotionID;
   private int itemID;
-
-  /**
-   * Gets item id.
-   *
-   * @return the item id
-   */
-public int getItemID() {
-    return itemID;
-  }
-
-  /**
-   * Sets item id.
-   *
-   * @param itemID the item id
-   */
-public void setItemID(int itemID) {
-    this.itemID = itemID;
-  }
 
   /**
    * Instantiates a new Menu item.
    *
-   * @param name the name
-   * @param type the type
-   * @param description the description
-   * @param price the price
+   * @param name Name of the menu item.
+   * @param type Type of course of the menu item.
+   * @param description Description of the menu item.
+   * @param price Price of the menu item.
    */
 public MenuItem(String name, ItemType type, String description, Double price) {
     this.name = name;
     this.description = description;
     this.price = price;
     this.type = type;
-    this.promotionID = -1;
   }
 
+    /**
+     * Getter method for ID of the menu item.
+     *
+     * @return the item id
+     */
+    public int getItemID() {
+        return itemID;
+    }
+
+    /**
+     * Setter method for ID of the menu item.
+     *
+     * @param itemID ID of the menu item.
+     */
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
+    }
+
   /**
-   * Gets name.
+   * Getter method for name of the menu item.
    *
-   * @return the name
+   * @return Name of the menu item.
    */
 public String getName() {
     return this.name;
   }
 
   /**
-   * Gets description.
+   * Getter method for description of the menu item.
    *
-   * @return the description
+   * @return The description of the menu item.
    */
 public String getDescription() {
     return this.description;
   }
 
   /**
-   * Gets price.
+   * Getter method for price of the menu item.
    *
-   * @return the price
+   * @return The price of the menu item.
    */
 public Double getPrice() {
     return this.price;
   }
 
   /**
-   * Gets type.
+   * Getter method for type of course of the menu item.
    *
-   * @return the type
+   * @return The type of course of the menu item.
    */
 public ItemType getType() {
     return this.type;
   }
 
   /**
-   * Sets price.
+   * Setter method for the price of the menu item.
    *
-   * @param newPrice the new price
+   * @param newPrice The new price of the menu item.
    */
 public void setPrice(Double newPrice) {
     this.price = newPrice;
   }
 
   /**
-   * Gets promotion id.
+   * Setter method for the name of the menu item.
    *
-   * @return the promotion id
-   */
-public int getPromotionID() {
-    return this.promotionID;
-  }
-
-  /**
-   * Sets promotion id.
-   *
-   * @param id the id
-   */
-public void setPromotionID(int id) {
-    this.promotionID = id;
-  }
-
-  /**
-   * Sets name.
-   *
-   * @param name the name
+   * @param name The new name of the menu item.
    */
 public void setName(String name) {
     this.name = name;

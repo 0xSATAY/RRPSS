@@ -102,7 +102,7 @@ public class ReservationController {
   }
 
   /**
-   * This method processes user actions.
+   * Processes user actions.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -133,7 +133,7 @@ public class ReservationController {
   }
 
   /**
-   * This method creates a new reservation.
+   * Creates a new reservation.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -224,7 +224,7 @@ public class ReservationController {
   }
 
   /**
-   * This method checks for table availability based on the time, date, and table number that the user entered.
+   * Checks for table availability based on the time, date, and table number that the user entered.
    *
    * @param pos Reference to the instance of RRPSS.
    */

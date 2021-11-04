@@ -4,91 +4,82 @@ import com.cz2002g5.Model.Reservation.Reservation;
 
 import java.util.ArrayList;
 
-/**
- * The type Table.
- */
+/** The Table model of tables in the restaurant. */
 public class Table {
 
-  /**
-   * The Id.
-   */
-Integer id, /**
-	 * The Seating capacity.
-	 */
-seatingCapacity;
+  /** The table's ID. */
+  Integer id,
+      /** The Seating capacity of the table. */
+      seatingCapacity;
 
-  /**
-   * The Reservations.
-   */
-ArrayList<Reservation> reservations = new ArrayList<>();
+  /** The Reservations of the table. */
+  ArrayList<Reservation> reservations = new ArrayList<>();
 
-  /**
-   * The Occupied.
-   */
-Boolean occupied = false;
+  /** The state of the table whether it is occupied. */
+  Boolean occupied = false;
 
   /**
    * Instantiates a new Table.
    *
-   * @param id the id
-   * @param seatingCapacity the seating capacity
+   * @param id the ID of the table.
+   * @param seatingCapacity the seating capacity of the table.
    */
-public Table(Integer id, Integer seatingCapacity) {
+  public Table(Integer id, Integer seatingCapacity) {
     this.id = id;
     this.seatingCapacity = seatingCapacity;
   }
 
   /**
-   * Gets table id.
+   * Getter method to retrieve the table's ID.
    *
    * @return the table id
    */
-public Integer getTableID() {
+  public Integer getTableID() {
     return this.id;
   }
 
   /**
-   * Gets reservations.
+   * Getter method to retrieve all reservations of the table.
    *
-   * @return the reservations
+   * @return the reservations of the table.
    */
-public ArrayList<Reservation> getReservations() {
+  public ArrayList<Reservation> getReservations() {
     return this.reservations;
   }
 
   /**
-   * Add reservation.
+   * Add reservation to the table.
    *
-   * @param reservation the reservation
+   * @param reservation the reservation that is to be added to this table.
    */
-public void addReservation(Reservation reservation) {
+  public void addReservation(Reservation reservation) {
     this.reservations.add(reservation);
   }
 
   /**
-   * Gets seating capacity.
+   * Getter method that retrieves the seating capacity of the table.
    *
-   * @return the seating capacity
+   * @return the seating capacity of the table.
    */
-public Integer getSeatingCapacity() {
+  public Integer getSeatingCapacity() {
     return this.seatingCapacity;
   }
 
   /**
-   * Is occupied boolean.
+   * Checks if the table is occupied.
    *
-   * @return the boolean
+   * @return whether the table is currently occupied
    */
-public Boolean isOccupied() {
+  public Boolean isOccupied() {
     return occupied;
   }
 
   /**
-   * Sets occupied.
+   * Sets the state of occupancy of the table.
    *
-   * @param occupied the occupied
+   * @param occupied the state of occupancy of the table.
    */
-public void setOccupied(Boolean occupied) {
+  public void setOccupied(Boolean occupied) {
     this.occupied = occupied;
   }
 }

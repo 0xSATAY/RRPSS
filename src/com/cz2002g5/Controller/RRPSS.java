@@ -97,7 +97,7 @@ public class RRPSS {
     }
 
   /**
-   * This method updates the current view that the user is in.
+   * Updates the current view that the user is in.
    *
    * @param pos Reference to the instance of RRPSS.
    * @param view The new view that is to be updated.
@@ -107,7 +107,7 @@ public class RRPSS {
   }
 
   /**
-   * This method shows the default view of the current view of an instance of RRPSS.
+   * Shows the default view of the current view of an instance of RRPSS.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -116,7 +116,7 @@ public class RRPSS {
   }
 
   /**
-   * This method shows the default view of the current view of an instance of RRPSS with an additional message.
+   * Shows the default view of the current view of an instance of RRPSS with an additional message.
    *
    * @param pos Reference to the instance of RRPSS.
    * @param param The custom message to be displayed
@@ -126,7 +126,7 @@ public class RRPSS {
   }
 
   /**
-   * This method returns the current view that the user is on for an instance of RRPSS.
+   * Returns the current view that the user is on for an instance of RRPSS.
    *
    * @param pos Reference to the instance of RRPSS.
    * @return the current view
@@ -136,7 +136,7 @@ public class RRPSS {
   }
 
   /**
-   * This method retrieves the menu of an instance of RRPSS.
+   * Retrieves the menu of an instance of RRPSS.
    *
    * @param pos Reference to the instance of RRPSS.
    * @return the menu
@@ -146,7 +146,7 @@ public class RRPSS {
   }
 
   /**
-   * This method retrieves the promotional sets of an instance of RRPSS.
+   * Retrieves the promotional sets of an instance of RRPSS.
    *
    * @param pos Reference to the instance of RRPSS.
    * @return the promotional sets
@@ -155,7 +155,7 @@ public class RRPSS {
     return pos.promotionalSets;
   }
 
-  /** This method starts the execution of the current instance of RRPSS.
+  /** Starts the execution of the current instance of RRPSS.
    * */
   public void run() {
     while (true) {
@@ -163,7 +163,7 @@ public class RRPSS {
     }
   }
 
-  /** This method reloads the menu from storage.
+  /** Reloads the menu from storage.
    * */
   public void reloadMenu() {
     this.menu.setMenuItems(CSVFileUtil.generateMenuItemListFromFile());
@@ -171,7 +171,7 @@ public class RRPSS {
   }
 
   /**
-   * This method adds an order to all existing orders.
+   * Adds an order to all existing orders.
    *
    * @param order The created order
    */
@@ -180,7 +180,7 @@ public class RRPSS {
   }
 
   /**
-   * This method retrieves all existing orders.
+   * Retrieves all existing orders.
    *
    * @return The list of all existing orders.
    */
@@ -189,7 +189,7 @@ public class RRPSS {
   }
 
   /**
-   * This method retrieves the instance of the restaurant.
+   * Retrieves the instance of the restaurant.
    *
    * @return The restaurant of the current RRPSS instance.
    */
@@ -198,7 +198,7 @@ public class RRPSS {
   }
 
   /**
-   * This method adds a promotional set to all existing promotional sets.
+   * Adds a promotional set to all existing promotional sets.
    *
    * @param pi The newly created promotional set
    */
@@ -207,7 +207,7 @@ public class RRPSS {
   }
 
   /**
-   * This method generates the string of all promotional sets concatenated.
+   * Generates the string of all promotional sets concatenated.
    *
    * @param withDesc Checks if description is needed.
    * @return The string of all promotional sets concatenated.
@@ -239,7 +239,7 @@ public class RRPSS {
   }
 
   /**
-   * This method generates the string of all menu items concatenated.
+   * Generates the string of all menu items concatenated.
    *
    * @param withDesc Checks if description is needed.
    * @return The string of all menu items concatenated.

@@ -1,8 +1,6 @@
 package com.cz2002g5.View;
 
-/**
- * The type Update menu item view.
- */
+/** Update menu item view. */
 public class UpdateMenuItemView implements View {
 
   /**
@@ -10,7 +8,7 @@ public class UpdateMenuItemView implements View {
    *
    * @param name the name
    */
-public void showUpdateNameView(String name) {
+  public void showUpdateNameView(String name) {
     System.out.println("New name for " + name + " (or press Enter to keep prev name):");
   }
 
@@ -19,7 +17,7 @@ public void showUpdateNameView(String name) {
    *
    * @param name the name
    */
-public void showUpdateTypeView(String name) {
+  public void showUpdateTypeView(String name) {
     System.out.println("New type for " + name + "\n1. MAINS\n2. DRINKS\n3. DESSERT");
   }
 
@@ -28,7 +26,7 @@ public void showUpdateTypeView(String name) {
    *
    * @param name the name
    */
-public void showUpdateDescView(String name) {
+  public void showUpdateDescView(String name) {
     System.out.println(
         "New description for " + name + " (or press Enter to keep prev description):");
   }
@@ -38,7 +36,7 @@ public void showUpdateDescView(String name) {
    *
    * @param name the name
    */
-public void showUpdatePriceView(String name) {
+  public void showUpdatePriceView(String name) {
     System.out.println("New price for " + name + ":");
   }
 

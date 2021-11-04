@@ -179,7 +179,7 @@ public class MenuItemController implements MenuEditController {
   }
 
   /**
-   * This method displays all menu items (ala carte and promotional sets).
+   * Displays all menu items (ala carte and promotional sets).
    *
    * @param pos Reference to the instance of RRPSS.
    */

@@ -1,8 +1,6 @@
 package com.cz2002g5.View;
 
-/**
- * The type Menu items view.
- */
+/** Menu items view. */
 public class MenuItemsView implements View {
   @Override
   public void display() {

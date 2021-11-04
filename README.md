@@ -50,9 +50,8 @@ $ cd RRPSS
 - [x] Complete functional requirement 8
 - [x] Complete functional requirement 9
 - [x] Complete functional requirement 10
-- [ ] Refactor and modularize codebase further
-- [ ] Generate Javadocs
-- [ ] Create UML Class Diagrams using [PlantUML](https://plantuml.com/)
-- [ ] Create a command-line launcher
+- [x] Refactor and modularize codebase further
+- [x] Generate Javadocs
+- [ ] ~~Create UML Class Diagrams using [PlantUML](https://plantuml.com/)~~ Used Visual Paradigm instead
 
 I might have over-engineered this thing :/

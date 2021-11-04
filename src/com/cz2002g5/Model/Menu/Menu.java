@@ -18,7 +18,7 @@ public Menu(ArrayList<MenuItem> menuItems) {
   }
 
   /**
-   * This method retrieves the menu items of the menu.
+   * Retrieves the menu items of the menu.
    *
    * @return A list of all menu items from the menu.
    */
@@ -27,7 +27,7 @@ public ArrayList<MenuItem> getMenuItems() {
   }
 
   /**
-   * This method updates the menu items of the menu.
+   * Updates the menu items of the menu.
    *
    * @param menuItems The updated menu items that will be replacing the current menu items.
    */

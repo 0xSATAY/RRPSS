@@ -10,18 +10,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-/**
- * The type Csv file util.
- */
+/** The utility class for all CSV CRUD operations. */
 public class CSVFileUtil {
 
   /**
-   * Read file array list.
+   * Read file given a file name and returns the contents in an ArrayList.
    *
-   * @param filename the filename
-   * @return the array list
+   * @param filename the filename of the file
+   * @return the array list of the contents
    */
-public static ArrayList<String> readFile(String filename) {
+  public static ArrayList<String> readFile(String filename) {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/" + filename));
@@ -38,11 +36,11 @@ public static ArrayList<String> readFile(String filename) {
   }
 
   /**
-   * Generate menu item list from file array list.
+   * Generates menu item list from file.
    *
-   * @return the array list
+   * @return the array list of menu items
    */
-public static ArrayList<MenuItem> generateMenuItemListFromFile() {
+  public static ArrayList<MenuItem> generateMenuItemListFromFile() {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
@@ -63,12 +61,12 @@ public static ArrayList<MenuItem> generateMenuItemListFromFile() {
   }
 
   /**
-   * Gets item by name.
+   * Gets menu item by name.
    *
-   * @param name the name
-   * @return the item by name
+   * @param name the name of the item
+   * @return the menu item of the name. If item doesn't exist, returns null
    */
-public static MenuItem getItemByName(String name) {
+  public static MenuItem getItemByName(String name) {
     try {
       ArrayList<MenuItem> menuItems = generateMenuItemListFromFile();
       assert menuItems != null;
@@ -85,29 +83,29 @@ public static MenuItem getItemByName(String name) {
   }
 
   /**
-   * Read menu file array list.
+   * Reads the CSV file that contains the menu items.
    *
-   * @return the array list
+   * @return the contents of the menu file
    */
-public static ArrayList<String> readMenuFile() {
+  public static ArrayList<String> readMenuFile() {
     return readFile("menu.txt");
   }
 
   /**
-   * Read promo menu file array list.
+   * Reads the CSV file that contains the promotional sets.
    *
-   * @return the array list
+   * @return the contents of the promotional sets file.
    */
-public static ArrayList<String> readPromoMenuFile() {
+  public static ArrayList<String> readPromoMenuFile() {
     return readFile("promomenu.txt");
   }
 
   /**
-   * Add item to menu.
+   * Writes a new item to the menu CSV file.
    *
-   * @param item the item
+   * @param item the menu item that is to be written to the menu CSV file.
    */
-public static void addItemToMenu(MenuItem item) {
+  public static void addItemToMenu(MenuItem item) {
     try {
       String itemString =
           item.getName()
@@ -128,12 +126,12 @@ public static void addItemToMenu(MenuItem item) {
   }
 
   /**
-   * Update menu by index.
+   * Update menu item of the menu CSV file by index.
    *
    * @param itemIndex the item index
-   * @param item the item
+   * @param item the menu item that is to be updated
    */
-public static void updateMenuByIndex(int itemIndex, MenuItem item) {
+  public static void updateMenuByIndex(int itemIndex, MenuItem item) {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/menu.txt"));
@@ -167,11 +165,11 @@ public static void updateMenuByIndex(int itemIndex, MenuItem item) {
   }
 
   /**
-   * Remove menu item by index.
+   * Remove menu item from the menu CSV file by index.
    *
-   * @param index the index
+   * @param index the index of the item that is to be removed from the menu CSV file
    */
-public static void removeMenuItemByIndex(int index) {
+  public static void removeMenuItemByIndex(int index) {
     try {
       ArrayList<String> fileContent = readMenuFile();
       fileContent.remove(index);
@@ -191,11 +189,11 @@ public static void removeMenuItemByIndex(int index) {
   }
 
   /**
-   * Generate promo menu item list from file array list.
+   * Generate promo menu item list from the promotional set CSV file.
    *
-   * @return the array list
+   * @return the array list of promotional sets
    */
-public static ArrayList<PromotionalSet> generatePromoMenuItemListFromFile() {
+  public static ArrayList<PromotionalSet> generatePromoMenuItemListFromFile() {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
@@ -224,11 +222,11 @@ public static ArrayList<PromotionalSet> generatePromoMenuItemListFromFile() {
   }
 
   /**
-   * Remove promo item by index.
+   * Remove promo item from promomenu CSV file by index.
    *
-   * @param index the index
+   * @param index the index of the promotional set that is to be removed
    */
-public static void removePromoItemByIndex(int index) {
+  public static void removePromoItemByIndex(int index) {
     try {
       ArrayList<String> fileContent = readPromoMenuFile();
       fileContent.remove(index);
@@ -248,12 +246,12 @@ public static void removePromoItemByIndex(int index) {
   }
 
   /**
-   * Update promo menu by index.
+   * Update promo menu item of promomenu CSV file by index.
    *
-   * @param itemIndex the item index
-   * @param item the item
+   * @param itemIndex the index of the item that is to be updated
+   * @param item the promotional set item to update
    */
-public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) {
+  public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) {
     try {
       BufferedReader csvReader;
       csvReader = new BufferedReader(new FileReader("src/com/cz2002g5/Util/promomenu.txt"));
@@ -286,11 +284,11 @@ public static void updatePromoMenuByIndex(int itemIndex, PromotionalSet item) {
   }
 
   /**
-   * Add item to promo menu.
+   * Add promo item to promo menu CSV file.
    *
-   * @param item the item
+   * @param item the promotional set item that is to be added
    */
-public static void addItemToPromoMenu(PromotionalSet item) {
+  public static void addItemToPromoMenu(PromotionalSet item) {
     try {
       StringBuilder setItems = new StringBuilder();
       for (MenuItem mi : item.getSetItems()) {
@@ -309,11 +307,11 @@ public static void addItemToPromoMenu(PromotionalSet item) {
   }
 
   /**
-   * Add order items to revenue report csv.
+   * Add order items to revenue report CSV.
    *
-   * @param orderItems the order items
+   * @param orderItems the order items that is to be added
    */
-public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems) {
+  public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems) {
     try {
       BufferedReader csvReader =
           new BufferedReader(new FileReader("src/com/cz2002g5/Util/revenuereport.txt"));
@@ -336,11 +334,11 @@ public static void addOrderItemsToRevenueReportCSV(ArrayList<String> orderItems)
   }
 
   /**
-   * Read revenue report array list.
+   * Generate revenue report from the revenue report CSV file.
    *
-   * @return the array list
+   * @return the array list of strings generated from the CSV file
    */
-public static ArrayList<String> readRevenueReport() {
+  public static ArrayList<String> readRevenueReport() {
     return readFile("revenuereport.txt");
   }
 }

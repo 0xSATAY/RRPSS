@@ -1,8 +1,6 @@
 package com.cz2002g5.View;
 
-/**
- * The type Create menu item view.
- */
+/** Create menu item view. */
 public class CreateMenuItemView implements View {
 
   @Override
@@ -15,31 +13,23 @@ public class CreateMenuItemView implements View {
     System.out.println(s);
   }
 
-  /**
-   * Show add name view.
-   */
-public void showAddNameView() {
+  /** Show add name view. */
+  public void showAddNameView() {
     System.out.println("Name of item:");
   }
 
-  /**
-   * Show add type view.
-   */
-public void showAddTypeView() {
+  /** Show add type view. */
+  public void showAddTypeView() {
     System.out.println("Type of item:\n1. MAINS\n2. DRINKS\n3. DESSERT");
   }
 
-  /**
-   * Show add desc view.
-   */
-public void showAddDescView() {
+  /** Show add desc view. */
+  public void showAddDescView() {
     System.out.println("Description of item:");
   }
 
-  /**
-   * Show add price view.
-   */
-public void showAddPriceView() {
+  /** Show add price view. */
+  public void showAddPriceView() {
     System.out.println("Price of item:");
   }
 }

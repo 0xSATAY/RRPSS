@@ -14,7 +14,7 @@ import java.util.Scanner;
 /** The controller class for all revenue report related operations. */
 public class RevenueReportController {
 
-  /** This method generates a revenue report based on a starting date and ending date.
+  /** Generates a revenue report based on a starting date and ending date.
    * Result is displayed in the standard output.
    * */
   public void generateRevenueReport() {
@@ -62,7 +62,7 @@ public class RevenueReportController {
   }
 
   /**
-   * This method adds all the items on an invoice to the revenue report when a customer pays the bill.
+   * Adds all the items on an invoice to the revenue report when a customer pays the bill.
    *
    * @param order The order that is being checked out.
    * @param date The date that the order is checked out.

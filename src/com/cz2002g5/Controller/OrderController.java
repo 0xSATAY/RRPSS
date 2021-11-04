@@ -20,7 +20,7 @@ import java.util.Scanner;
 /** The controller class for all order related operations. */
 public class OrderController {
   /**
-   * This method processes user actions.
+   * Processes user actions.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -48,7 +48,7 @@ public class OrderController {
   }
 
   /**
-   * This method displays all the existing orders to the view.
+   * Displays all the existing orders to the view.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -77,7 +77,7 @@ public class OrderController {
   }
 
   /**
-   * This method creates a new order.
+   * Creates a new order.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -253,7 +253,7 @@ public class OrderController {
   }
 
   /**
-   * This method adds an item to an existing order.
+   * Adds an item to an existing order.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -349,7 +349,7 @@ public class OrderController {
   }
 
   /**
-   * This method removes an item from an existing order.
+   * Removes an item from an existing order.
    *
    * @param pos Reference to the instance of RRPSS.
    */
@@ -452,7 +452,7 @@ public class OrderController {
   }
 
   /**
-   * This method generates the invoice when customer pays the bill. Customer's table is set free and
+   * Generates the invoice when customer pays the bill. Customer's table is set free and
    * all of the ordered items are added to the revenue report.
    *
    * @param pos Reference to the instance of RRPSS.

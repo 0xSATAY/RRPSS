@@ -4,22 +4,16 @@ import com.cz2002g5.Model.Reservation.Reservation;
 
 import java.util.ArrayList;
 
-/**
- * The type Restaurant.
- */
+/** The Restaurant model of the restaurant. */
 public class Restaurant {
 
-  /**
-   * The constant TOTAL_TABLES.
-   */
-public static final Integer TOTAL_TABLES = 20;
+  /** The total number of tables the restaurant can have. */
+  public static final Integer TOTAL_TABLES = 20;
 
   private final ArrayList<Table> tables;
 
-  /**
-   * Instantiates a new Restaurant.
-   */
-public Restaurant() {
+  /** Instantiates a new Restaurant. */
+  public Restaurant() {
     tables = new ArrayList<>();
     for (int i = 0; i < TOTAL_TABLES; i++) {
       this.tables.add(new Table(i, ((i + 4) / 4) * 2));
@@ -27,20 +21,20 @@ public Restaurant() {
   }
 
   /**
-   * Gets tables.
+   * Getter method that retrieves all tables of the restaurant.
    *
-   * @return the tables
+   * @return the tables of the restaurant
    */
-public ArrayList<Table> getTables() {
+  public ArrayList<Table> getTables() {
     return this.tables;
   }
 
   /**
-   * Gets reservations.
+   * Getter method to retrieve all reservations of the restaurant.
    *
-   * @return the reservations
+   * @return all reservations of the restaurant
    */
-public ArrayList<Reservation> getReservations() {
+  public ArrayList<Reservation> getReservations() {
     ArrayList<Reservation> reservations = new ArrayList<>();
     for (Table t : this.tables) {
       reservations.addAll(t.getReservations());
@@ -49,13 +43,13 @@ public ArrayList<Reservation> getReservations() {
   }
 
   /**
-   * Assign table for reservation int.
+   * Assign table for reservation.
    *
-   * @param reservation the reservation
-   * @param checkAvail the check avail
-   * @return the int
+   * @param reservation the created reservation
+   * @param checkAvail flag to check if the method is checking availability or performing a true reservation.
+   * @return the table number of the reserved table. Returns -1 if there are no tables available for reservation.
    */
-public int assignTableForReservation(Reservation reservation, boolean checkAvail) {
+  public int assignTableForReservation(Reservation reservation, boolean checkAvail) {
     boolean reservationFound = false;
     for (int i = 0; i < this.tables.size(); i++) {
       if (this.tables.get(i).getSeatingCapacity()
