@@ -322,7 +322,7 @@ public class CSVFileUtil {
       }
       rows.addAll(orderItems);
       BufferedWriter writer =
-          new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/revenuereport.txt", true));
+          new BufferedWriter(new FileWriter("src/com/cz2002g5/Util/revenuereport.txt", false));
       for (String r : rows) {
         writer.write(r);
         writer.newLine();
