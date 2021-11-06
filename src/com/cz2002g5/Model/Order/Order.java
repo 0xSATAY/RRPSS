@@ -195,7 +195,7 @@ public class Order {
     }
     System.out.println("10% Service charge: " + NumberFormat.getCurrencyInstance().format(total * 0.1));
     System.out.println("7% GST: " + NumberFormat.getCurrencyInstance().format(total * 0.07));
-    System.out.println("TOTAL: " + NumberFormat.getCurrencyInstance().format(total * 1.07));
+    System.out.println("TOTAL: " + NumberFormat.getCurrencyInstance().format(total * 1.1 * 1.07));
     System.out.println("--------------------------------------------");
   }
 }
