@@ -29,7 +29,7 @@ public class PromotionalSet extends MenuItem {
    * @param name The name of the new promotional set.
    */
   public PromotionalSet(String name) {
-    super(name, null, "Promotional Item", null);
+    super(name, ItemType.PROMO, "Promotional Item", 0.0);
     this.id = count.incrementAndGet();
   }
 
