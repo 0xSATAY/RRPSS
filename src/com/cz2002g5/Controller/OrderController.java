@@ -296,6 +296,7 @@ public class OrderController {
     System.out.println("Add item to order #" + (orderSelection + 1));
     ArrayList<MenuItem> menuItems = RRPSS.getMenu(pos).getMenuItems();
     ArrayList<PromotionalSet> promotionalSets = RRPSS.getPromotionalSets(pos);
+    counter = 1;
     for (MenuItem item : menuItems) {
       System.out.println(
           counter
