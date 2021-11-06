@@ -501,6 +501,7 @@ public class OrderController {
     orderSelected.printInvoice(isMember);
     Table billingTable = pos.getRestaurant().getTables().get(orderSelected.getTableNumber() - 1);
     billingTable.setOccupied(false);
+    System.out.println("Table " + billingTable.getTableID()+1 + " is vacated.");
     pos.getOrders().remove(orderSelected);
     RevenueReportController rrc = new RevenueReportController();
     rrc.addOrderItemsToRevenueReport(orderSelected, LocalDate.now());
