@@ -145,7 +145,6 @@ public class OrderController {
         break;
       } else {
         System.out.println("You have entered an invalid option!\nSelect an item from the menu:");
-        sc.next();
         while (!sc.hasNextInt()) {
           System.out.println(
               "You have inputted a non-numerical value!\nSelect an item from the menu:");
@@ -157,7 +156,6 @@ public class OrderController {
     System.out.println("---------------Promo sets---------------");
     ((CreateOrderView) RRPSS.getCurrentView(pos)).showMenu(pos.generatePromoMenuString(false));
     System.out.println("If no item is selected, enter 0:");
-    sc.next();
     while (!sc.hasNextInt()) {
       System.out.println("You have inputted a non-numerical value!\nSelect an item from the menu:");
       sc.next();
@@ -271,11 +269,10 @@ public class OrderController {
       for (MenuItem item : order.getOrderItems()) {
         System.out.println(
             item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
-        counter++;
       }
       System.out.println(
           "Total: " + NumberFormat.getCurrencyInstance().format(order.getTotalPrice()) + "\n");
-      counter = 1;
+      counter++;
     }
     if (pos.getOrders().size() == 0) {
       return;

@@ -1,12 +1,10 @@
 package com.cz2002g5.Model.Menu;
 
-/**
- * The MenuItem model for menu items.
- */
+/** The MenuItem model for menu items. */
 public class MenuItem {
-  private String name;
   private final String description;
   private final ItemType type;
+  private String name;
   private Double price;
   private int itemID;
 
@@ -18,38 +16,47 @@ public class MenuItem {
    * @param description Description of the menu item.
    * @param price Price of the menu item.
    */
-public MenuItem(String name, ItemType type, String description, Double price) {
+  public MenuItem(String name, ItemType type, String description, Double price) {
     this.name = name;
     this.description = description;
     this.price = price;
     this.type = type;
   }
 
-    /**
-     * Getter method for ID of the menu item.
-     *
-     * @return the item id
-     */
-    public int getItemID() {
-        return itemID;
-    }
+  /**
+   * Getter method for ID of the menu item.
+   *
+   * @return the item id
+   */
+  public int getItemID() {
+    return itemID;
+  }
 
-    /**
-     * Setter method for ID of the menu item.
-     *
-     * @param itemID ID of the menu item.
-     */
-    public void setItemID(int itemID) {
-        this.itemID = itemID;
-    }
+  /**
+   * Setter method for ID of the menu item.
+   *
+   * @param itemID ID of the menu item.
+   */
+  public void setItemID(int itemID) {
+    this.itemID = itemID;
+  }
 
   /**
    * Getter method for name of the menu item.
    *
    * @return Name of the menu item.
    */
-public String getName() {
+  public String getName() {
     return this.name;
+  }
+
+  /**
+   * Setter method for the name of the menu item.
+   *
+   * @param name The new name of the menu item.
+   */
+  public void setName(String name) {
+    this.name = name;
   }
 
   /**
@@ -57,7 +64,7 @@ public String getName() {
    *
    * @return The description of the menu item.
    */
-public String getDescription() {
+  public String getDescription() {
     return this.description;
   }
 
@@ -66,17 +73,8 @@ public String getDescription() {
    *
    * @return The price of the menu item.
    */
-public Double getPrice() {
+  public Double getPrice() {
     return this.price;
-  }
-
-  /**
-   * Getter method for type of course of the menu item.
-   *
-   * @return The type of course of the menu item.
-   */
-public ItemType getType() {
-    return this.type;
   }
 
   /**
@@ -84,16 +82,16 @@ public ItemType getType() {
    *
    * @param newPrice The new price of the menu item.
    */
-public void setPrice(Double newPrice) {
+  public void setPrice(Double newPrice) {
     this.price = newPrice;
   }
 
   /**
-   * Setter method for the name of the menu item.
+   * Getter method for type of course of the menu item.
    *
-   * @param name The new name of the menu item.
+   * @return The type of course of the menu item.
    */
-public void setName(String name) {
-    this.name = name;
+  public ItemType getType() {
+    return this.type;
   }
 }

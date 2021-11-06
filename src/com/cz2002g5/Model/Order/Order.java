@@ -9,14 +9,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- * The Order model for customer orders.
- */
+/** The Order model for customer orders. */
 public class Order {
   private final int employeeID, numOfCustomers;
-  private int tableNumber;
   private final ArrayList<MenuItem> orderItems = new ArrayList<>();
   private final ArrayList<PromotionalSet> promotionalSets = new ArrayList<>();
+  private final int tableNumber;
 
   /**
    * Instantiates a new Order.
@@ -25,7 +23,7 @@ public class Order {
    * @param tableNumber The table number of the customer.
    * @param numOfCustomers The number of customers.
    */
-public Order(int employeeID, int tableNumber, int numOfCustomers) {
+  public Order(int employeeID, int tableNumber, int numOfCustomers) {
     this.employeeID = employeeID;
     this.tableNumber = tableNumber;
     this.numOfCustomers = numOfCustomers;
@@ -36,7 +34,7 @@ public Order(int employeeID, int tableNumber, int numOfCustomers) {
    *
    * @param item The new item that is to be added to the order.
    */
-public void addItem(MenuItem item) {
+  public void addItem(MenuItem item) {
     orderItems.add(item);
   }
 
@@ -45,7 +43,7 @@ public void addItem(MenuItem item) {
    *
    * @param item The item that is to be removed from the order.
    */
-public void removeItem(MenuItem item) {
+  public void removeItem(MenuItem item) {
     orderItems.remove(item);
   }
 
@@ -54,7 +52,7 @@ public void removeItem(MenuItem item) {
    *
    * @param ps The new promotional set that is the be added to the order.
    */
-public void addPromotionalSets(PromotionalSet ps) {
+  public void addPromotionalSets(PromotionalSet ps) {
     this.promotionalSets.add(ps);
   }
 
@@ -63,7 +61,7 @@ public void addPromotionalSets(PromotionalSet ps) {
    *
    * @return The promotional sets in the order.
    */
-public ArrayList<PromotionalSet> getPromotionalSets() {
+  public ArrayList<PromotionalSet> getPromotionalSets() {
     return this.promotionalSets;
   }
 
@@ -72,7 +70,7 @@ public ArrayList<PromotionalSet> getPromotionalSets() {
    *
    * @param ps The promotional set that is to be removed from the order.
    */
-public void removePromotionalSet(PromotionalSet ps) {
+  public void removePromotionalSet(PromotionalSet ps) {
     this.promotionalSets.remove(ps);
   }
 
@@ -81,7 +79,7 @@ public void removePromotionalSet(PromotionalSet ps) {
    *
    * @param index The index of the menu item in the order that is to be removed.
    */
-public void removeItem(int index) {
+  public void removeItem(int index) {
     orderItems.remove(index);
   }
 
@@ -90,7 +88,7 @@ public void removeItem(int index) {
    *
    * @return All order items in the order.
    */
-public ArrayList<MenuItem> getOrderItems() {
+  public ArrayList<MenuItem> getOrderItems() {
     return this.orderItems;
   }
 
@@ -99,7 +97,7 @@ public ArrayList<MenuItem> getOrderItems() {
    *
    * @return The total price of the order.
    */
-public double getTotalPrice() {
+  public double getTotalPrice() {
     double totalCost = 0;
     for (MenuItem item : this.orderItems) {
       totalCost += item.getPrice();
@@ -115,7 +113,7 @@ public double getTotalPrice() {
    *
    * @return The table number that the order belongs to.
    */
-public int getTableNumber() {
+  public int getTableNumber() {
     return this.tableNumber;
   }
 
@@ -124,7 +122,7 @@ public int getTableNumber() {
    *
    * @return the num of customers of a table for the order.
    */
-public int getNumOfCustomers() {
+  public int getNumOfCustomers() {
     return this.numOfCustomers;
   }
 
@@ -133,25 +131,27 @@ public int getNumOfCustomers() {
    *
    * @return the employee ID that created this order.
    */
-public int getEmployeeID() {
+  public int getEmployeeID() {
     return this.employeeID;
   }
 
   /**
-   * Getter method to retrieve the total size of the order. (Total size of ala carte menu items and promotional set items)
+   * Getter method to retrieve the total size of the order. (Total size of ala carte menu items and
+   * promotional set items)
    *
    * @return the total order size.
    */
-public int getTotalOrderSize() {
+  public int getTotalOrderSize() {
     return this.orderItems.size() + this.promotionalSets.size();
   }
 
   /**
-   * Getter method that retrieves all the items of the order. (Both ala carte and promotional set items)
+   * Getter method that retrieves all the items of the order. (Both ala carte and promotional set
+   * items)
    *
    * @return All item orders.
    */
-public ArrayList<MenuItem> getAllItemOrders() {
+  public ArrayList<MenuItem> getAllItemOrders() {
     ArrayList<MenuItem> all = new ArrayList<>();
     all.addAll(this.orderItems);
     all.addAll(this.promotionalSets);
@@ -163,7 +163,7 @@ public ArrayList<MenuItem> getAllItemOrders() {
    *
    * @param isMember A flag to determine if the paying customer is a member of the restaurant.
    */
-public void printInvoice(boolean isMember) {
+  public void printInvoice(boolean isMember) {
     ArrayList<MenuItem> all = this.getAllItemOrders();
     System.out.println("--------------0xCAFEBABE  Cafe--------------");
     System.out.println("            21 Lien Ying Chow Dr            ");

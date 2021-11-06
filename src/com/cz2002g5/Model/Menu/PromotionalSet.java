@@ -10,7 +10,6 @@ public class PromotionalSet extends MenuItem {
   public static final AtomicInteger count = new AtomicInteger(0);
   private final ArrayList<MenuItem> setItems = new ArrayList<>();
   private int id;
-  private Double price;
 
   /**
    * Instantiates a new Promotional set.
@@ -30,7 +29,7 @@ public class PromotionalSet extends MenuItem {
    * @param name The name of the new promotional set.
    */
   public PromotionalSet(String name) {
-    super(name, null, null, null);
+    super(name, null, "Promotional Item", null);
     this.id = count.incrementAndGet();
   }
 
@@ -41,14 +40,6 @@ public class PromotionalSet extends MenuItem {
    */
   public int getId() {
     return id;
-  }
-
-  public Double getPrice() {
-    return this.price;
-  }
-
-  public void setPrice(Double price) {
-    this.price = price;
   }
 
   /**
