@@ -466,16 +466,14 @@ public class OrderController {
       for (MenuItem item : order.getOrderItems()) {
         System.out.println(
             item.getName() + " - " + NumberFormat.getCurrencyInstance().format(item.getPrice()));
-        counter++;
       }
       for (PromotionalSet ps : order.getPromotionalSets()) {
         System.out.println(
             ps.getName() + " - " + NumberFormat.getCurrencyInstance().format(ps.getPrice()));
-        counter++;
       }
       System.out.println(
           "Total: " + NumberFormat.getCurrencyInstance().format(order.getTotalPrice()) + "\n");
-      counter = 1;
+      counter++;
     }
     if (pos.getOrders().size() == 0) {
       return;
